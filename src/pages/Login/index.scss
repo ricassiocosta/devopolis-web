@@ -5,16 +5,41 @@ body {
     font-weight: bold;
 }
 
+.welcome {
+    width: 100%;
+    height: 50px;
+    background-color: $main-color;
+    text-align: center;
+    line-height: 50px;
+}
+
+.welcome span {
+    color: #fff;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    vertical-align: center;
+    max-width: 1000px;
+    margin: 15vh auto;
+}
+
+.login {
+    margin-top: 50px;
+}
+
 .logo {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
-    margin-top: 25vh;
+    margin-bottom: 50px;
     img {
-        width: 64px;
+        width: 32px;
     }
     span {
-        font-size: 48px;
+        font-size: 32px;
         color: $main-color;
         margin-left: 20px;
     }
@@ -23,9 +48,8 @@ body {
 .login-box {
     width: 370px;
     height: 200px;
-    background: #EEEE;
+    background: #EEEEEEEE;
     border-radius: 10px;
-    margin: 39px auto;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -61,3 +85,6 @@ body {
     filter: brightness(0.8);
 }
 
+.login-img img {
+    width: 550px;
+}
