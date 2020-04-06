@@ -31,14 +31,14 @@ export const LoginBox = styled.div`
   flex-direction: column;
   align-items: center;
   p {
-      width: 280px;
-      margin-top: 36px;
-      margin-bottom: 36px;
-      color: #008CFF;
+    width: 280px;
+    margin-top: 36px;
+    margin-bottom: 36px;
+    color: #008CFF;
   }
 `
 
-export const LoginButton = styled.div`
+export const LoginButton = styled.a`
   width: 245px;
   height: 45px;
   background-color: #008CFF;
@@ -46,14 +46,14 @@ export const LoginButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
+  text-decoration: none;
   img {
-      width: 32px;
+    width: 32px;
   }
   span {
-      font-size: 18px;
-      color: white;
-      margin-left: 10px;
+    font-size: 18px;
+    color: white;
+    margin-left: 10px;
   }
   &:hover {
     filter: brightness(0.8);

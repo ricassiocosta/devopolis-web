@@ -5,6 +5,9 @@ import logo from '../../assets/logo.svg'
 import githubLogo from '../../assets/github.svg'
 import welcome from '../../assets/welcome.jpg'
 
+import { AUTHORIZE_URL } from '../../constants'
+import { GITHUB_CLIENT_ID } from '../../env'
+
 export default function Login () {
   return (
     <LoginPage>
@@ -19,7 +22,7 @@ export default function Login () {
           <LoginBox>
             <p>Already have a Github account?<br/> Just login bellow.</p>
 
-            <LoginButton>
+            <LoginButton href={`${AUTHORIZE_URL}?client_id=${GITHUB_CLIENT_ID}`}>
               <img src={githubLogo} alt="github logo"/>
               <span>Github</span>
             </LoginButton>
