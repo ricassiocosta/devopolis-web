@@ -4,6 +4,9 @@ import './index.scss'
 import logo from '../../assets/network.svg'
 import githubLogo from '../../assets/github.svg'
 
+import { AUTHORIZE_URL } from '../../constants'
+import { GITHUB_CLIENT_ID } from '../../env'
+
 export default function Login () {
   return (
     <>
@@ -13,10 +16,10 @@ export default function Login () {
       </div>
       <div className="login-box">
         <p>Already have a Github account? Just login bellow.</p>
-        <div className="login-button">
+      <a className="login-button" href={`${AUTHORIZE_URL}?client_id=${GITHUB_CLIENT_ID}`}>
           <img src={githubLogo} alt="github logo"/>
           <span>Github</span>
-        </div>
+        </a>
       </div>
     </>
   )
