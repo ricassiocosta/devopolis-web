@@ -1,13 +1,14 @@
 import styled from 'styled-components'
 
 export const LoginPage = styled.div`
-  font-family: 'ArvoBold';
+  font-family: 'RobotoBold';
 `
 
 export const HeaderWelcome = styled.div`
   width: 100%;
   height: 50px;
   background-color: #008CFF;
+  font-family: 'ArvoBold';
   text-align: center;
   line-height: 50px;
   span{
@@ -15,20 +16,9 @@ export const HeaderWelcome = styled.div`
   }
 `
 
-export const Logo = styled.div`
-  display: flex;
-  justify-content: left;
-  align-items: center;
+export const Logo = styled.img`
+  width: 200px;
   margin-bottom: 50px;
-  img {
-      width: 32px;
-  }
-  span {
-
-    font-size: 32px;
-    color: #008CFF;
-    margin-left: 20px;
-  }
 `
 
 export const LoginBox = styled.div`

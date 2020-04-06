@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { HeaderWelcome, Logo, LoginBox, LoginButton, Img, LoginPage, Content, Container } from './styles'
-import logo from '../../assets/network.svg'
+import logo from '../../assets/logo.svg'
 import githubLogo from '../../assets/github.svg'
 import welcome from '../../assets/welcome.jpg'
 
@@ -14,13 +14,10 @@ export default function Login () {
 
       <Content>
         <Container>
-          <Logo>
-            <img src={logo} alt="logo"/>
-            <span>Devopolis</span>
-          </Logo>
+          <Logo src={logo} alt="logo"/>
 
           <LoginBox>
-            <p>Already have a Github account? Just login bellow.</p>
+            <p>Already have a Github account?<br/> Just login bellow.</p>
 
             <LoginButton>
               <img src={githubLogo} alt="github logo"/>

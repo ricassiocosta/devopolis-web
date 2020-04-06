@@ -34,7 +34,7 @@ const HeaderTop = styled.div`
 const DevInfo = styled.div`
   display: grid;
   grid-template-columns: 1fr 3fr;
-  grid-gap: 3px;
+  grid-gap: 5px;
   img {
     width: 42px;
     border-radius: 50%;
@@ -43,7 +43,7 @@ const DevInfo = styled.div`
 `
 
 const DevName = styled.div`
-  span:nth-child(1){
+  span:nth-child(1) {
     font-family: 'ArvoBold';
     font-size: 14px;
   }
