@@ -11,17 +11,21 @@ export default function Callback () {
 
 
   useEffect(() => {
-    const githubToken = getGithubToken(query.get('code'))
-    setGithubToken(githubToken)
-
-    const token = authenticate(githubToken)
-    setToken(token)
+    async function callApi () {
+      const githubToken = await getGithubToken(query.get('code'))
+      setGithubToken(githubToken)
+  
+      const token = await authenticate(githubToken)
+      setToken(token)
+    }
+    callApi()
   }, [query]);
 
   return (
     <>
-    {githubToken}
-    {token}
+    <span>GitHub Token: {githubToken}</span>
+    <br />
+    <span>API Token: {token}</span>
     </>
   )
 }
