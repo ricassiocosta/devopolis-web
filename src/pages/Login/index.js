@@ -1,34 +1,35 @@
 import React from 'react'
 
-import './index.scss'
+import { HeaderWelcome, Logo, LoginBox, LoginButton, Img, LoginPage, Content, Container } from './styles'
 import logo from '../../assets/network.svg'
 import githubLogo from '../../assets/github.svg'
 import welcome from '../../assets/welcome.jpg'
 
 export default function Login () {
   return (
-    <>
-      <div className="welcome">
+    <LoginPage>
+      <HeaderWelcome>
         <span>print(' Be welcome to our community! ');</span>
-      </div>
-      <div className="container">
-        <div className="login">
-          <div className="logo">
+      </HeaderWelcome>
+
+      <Content>
+        <Container>
+          <Logo>
             <img src={logo} alt="logo"/>
             <span>Devopolis</span>
-          </div>
-          <div className="login-box">
+          </Logo>
+
+          <LoginBox>
             <p>Already have a Github account? Just login bellow.</p>
-            <div className="login-button">
+
+            <LoginButton>
               <img src={githubLogo} alt="github logo"/>
               <span>Github</span>
-            </div>
-          </div>
-        </div>
-        <div className="login-img">
-          <img src={welcome} alt="networking"/>
-        </div>
-      </div>
-    </>
+            </LoginButton>
+          </LoginBox>
+        </Container>
+        <Img src={welcome} alt="networking"/>
+      </Content>
+    </LoginPage>
   )
 }

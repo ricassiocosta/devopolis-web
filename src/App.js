@@ -1,13 +1,14 @@
 import React from 'react'
-import './App.css'
+import GlobalStyle from './GlobalStyle.js'
+import GlobalFonts from './fonts/fonts';
 import Routes from './routes'
 
 export default function App () {
-  return (
+  return ( 
     <>
-      <div className="app">
-        <Routes />
-      </div>
+      <GlobalStyle/>
+      <GlobalFonts/>
+      <Routes /> 
     </>
   )
 }
