@@ -1,10 +1,6 @@
 import api from '../'
 
-export const getDevInfo = async (token, username) => {
-  const response = await api.get(`/devs/${username}`, { 
-    headers: {
-      'Authorization': `Bearer ${token}`
-    }
-   });
+export const getDevInfo = async (username) => {
+  const response = await api.get(`/devs/${username}`);
   return response.data
 }

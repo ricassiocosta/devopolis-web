@@ -19,9 +19,9 @@ export default function Callback () {
       const githubToken = await getGithubToken(query.get('code'))
   
       const { token, username } = await authenticate(githubToken)
-      const devInfo = await getDevInfo(token, username)
-
       dispatch(setToken(token))
+
+      const devInfo = await getDevInfo(username)
       dispatch(setDevInfo(devInfo))
 
       history.replace('/dashboard')
