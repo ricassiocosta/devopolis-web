@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { useSelector } from 'react-redux'
+
 import { 
   FeedPage,
   Content,
@@ -11,9 +13,15 @@ import Header from '../../components/Header'
 import Post from '../../components/Post'
 
 export default function Feed() {
+  const devInfo = useSelector(state => state.dev.devInfo)
+
   return (
     <FeedPage>
-      <Header/>
+      <Header
+        name={devInfo.name}
+        username={devInfo.github_username}
+        profilePhoto={devInfo.avatar_url}
+      />
       <Content>
         <Sidebar>
 

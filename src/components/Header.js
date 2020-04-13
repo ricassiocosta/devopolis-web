@@ -64,17 +64,17 @@ const HeaderBtn = styled.div`
   }
 `
 
-export default function Header() {
+export default function Header(props) {
   return (
     <Background>
       <HeaderContent>
         <LogoImg src={Logo} alt="Logo"/>
         <HeaderTop>
           <DevInfo>
-            <img src="https://avatars1.githubusercontent.com/u/42079830?v=4" alt="dev"/>
+            <img src={props.profilePhoto} alt="dev"/>
             <DevName>
-              <span>Ricássio Costa</span>
-              <span>@ricassiocosta</span>
+              <span>{props.name}</span>
+              <span>{props.username}</span>
             </DevName>
           </DevInfo>
           <HeaderBtn>
