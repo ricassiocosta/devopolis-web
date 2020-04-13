@@ -1,8 +1,7 @@
-import axios from 'axios'
-import { API_URL } from '../env'
+import api from '../'
 
 export const getDevInfo = async (token, username) => {
-  const response = await axios.get(`${API_URL}/devs/${username}`, { 
+  const response = await api.get(`/devs/${username}`, { 
     headers: {
       'Authorization': `Bearer ${token}`
     }
