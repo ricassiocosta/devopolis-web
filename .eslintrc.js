@@ -1,28 +1,28 @@
 module.exports = {
   env: {
     browser: true,
-    es6: true,
+    es6: true
   },
   extends: ['plugin:react/recommended', 'plugin:prettier/recommended', 'standard'],
   globals: {
     Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly',
+    SharedArrayBuffer: 'readonly'
   },
   parserOptions: {
     ecmaFeatures: {
-      jsx: true,
+      jsx: true
     },
     ecmaVersion: 2018,
-    sourceType: 'module',
+    sourceType: 'module'
   },
   settings: {
     react: {
-      version: 'detect',
-    },
+      version: 'detect'
+    }
   },
   plugins: ['react', 'prettier'],
   rules: {
-    'comma-dangle': ['error', 'never'],
+    'comma-dangle': ['error', 'only-multiline'],
     'arrow-parens': 0,
     'generator-star-spacing': 0,
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
@@ -42,8 +42,8 @@ module.exports = {
         ignoreRegExpLiterals: true,
         ignoreTrailingComments: true,
         ignoreComments: true,
-        ignoreTemplateLiterals: true,
-      },
+        ignoreTemplateLiterals: true
+      }
     ],
     eqeqeq: 'error',
     'prefer-destructuring': [
@@ -51,18 +51,18 @@ module.exports = {
       {
         VariableDeclarator: {
           array: true,
-          object: true,
+          object: true
         },
         AssignmentExpression: {
           array: false,
-          object: false,
-        },
-      },
+          object: false
+        }
+      }
     ],
     'object-curly-spacing': ['error', 'always'],
     'no-console': process.env.NODE_ENV === 'production' ? 2 : 0,
     quotes: ['error', 'single'],
     curly: ['error', 'all'],
-    'brace-style': ['error', '1tbs', { allowSingleLine: false }],
-  },
+    'brace-style': ['error', '1tbs', { allowSingleLine: false }]
+  }
 }
