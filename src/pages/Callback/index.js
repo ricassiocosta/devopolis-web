@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useLocation, useHistory } from "react-router-dom";
+import { useLocation, useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
 import { setDevInfo } from '../../store/actions/dev'
@@ -9,15 +9,15 @@ import { getGithubToken } from '../../services/github'
 import { authenticate } from '../../services/auth'
 import { getDevInfo } from '../../services/dev'
 
-export default function Callback () {
+export default function Callback() {
   const query = new URLSearchParams(useLocation().search)
   const dispatch = useDispatch()
   const history = useHistory()
 
   useEffect(() => {
-    async function callApi () {
+    async function callApi() {
       const githubToken = await getGithubToken(query.get('code'))
-  
+
       const { token, username } = await authenticate(githubToken)
       dispatch(setToken(token))
 
@@ -27,7 +27,7 @@ export default function Callback () {
       history.replace('/dashboard')
     }
     callApi()
-  });
+  })
 
   return <></>
 }

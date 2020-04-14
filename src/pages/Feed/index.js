@@ -3,12 +3,7 @@ import { getDashboard } from '../../services/dashboard'
 
 import { useSelector } from 'react-redux'
 
-import { 
-  FeedPage,
-  Content,
-  Sidebar,
-  FeedHistory,
-} from './styles'
+import { FeedPage, Content, Sidebar, FeedHistory } from './styles'
 
 import Header from '../../components/Header'
 import Post from '../../components/Post'
@@ -33,20 +28,16 @@ export default function Feed() {
         profilePhoto={devInfo.avatar_url}
       />
       <Content>
-        <Sidebar>
-
-        </Sidebar>
+        <Sidebar></Sidebar>
         <FeedHistory>
-          {
-            posts.map(post => (
-              <Post
-                key={post._id}
-                author={post.author}
-                authorPhoto={post.authorPhoto}
-                post={post.post}
-              />
-            ))
-          }
+          {posts.map(post => (
+            <Post
+              key={post._id}
+              author={post.author}
+              authorPhoto={post.authorPhoto}
+              post={post.post}
+            />
+          ))}
         </FeedHistory>
       </Content>
     </FeedPage>

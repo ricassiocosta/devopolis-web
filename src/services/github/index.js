@@ -1,6 +1,6 @@
 import api from '../'
 
-export const getGithubToken = async (code) => {
-  const response = await api.get('/callback/github', { params: { code } });
+export const getGithubToken = async code => {
+  const response = await api.get('/callback/github', { params: { code } })
   return response.data.token
 }

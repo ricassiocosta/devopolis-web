@@ -7,11 +7,11 @@ export const LoginPage = styled.div`
 export const HeaderWelcome = styled.div`
   width: 100%;
   height: 50px;
-  background-color: #008CFF;
+  background-color: #008cff;
   font-family: 'ArvoBold';
   text-align: center;
   line-height: 50px;
-  span{
+  span {
     color: #fff;
   }
 `
@@ -24,7 +24,7 @@ export const Logo = styled.img`
 export const LoginBox = styled.div`
   width: 370px;
   height: 200px;
-  background: #EEEEEEEE;
+  background: #eeeeeeee;
   border-radius: 10px;
   text-align: center;
   display: flex;
@@ -34,14 +34,14 @@ export const LoginBox = styled.div`
     width: 280px;
     margin-top: 36px;
     margin-bottom: 36px;
-    color: #008CFF;
+    color: #008cff;
   }
 `
 
 export const LoginButton = styled.a`
   width: 245px;
   height: 45px;
-  background-color: #008CFF;
+  background-color: #008cff;
   border-radius: 5px;
   display: flex;
   justify-content: center;
@@ -58,20 +58,20 @@ export const LoginButton = styled.a`
   &:hover {
     filter: brightness(0.8);
   }
-` 
+`
 
 export const Img = styled.img`
   width: 550px;
-  margin-left: 60px
-` 
+  margin-left: 60px;
+`
 
 export const Content = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 15vh;
-` 
+`
 
 export const Container = styled.div`
   margin-top: 50px;
-` 
+`

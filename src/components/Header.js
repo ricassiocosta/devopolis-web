@@ -53,13 +53,12 @@ const DevName = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-
 `
 
 const HeaderBtn = styled.div`
   display: flex;
   align-items: center;
-  img:nth-child(1){
+  img:nth-child(1) {
     margin-right: 16px;
   }
 `
@@ -68,18 +67,18 @@ const Header = ({ profilePhoto, name, username }) => {
   return (
     <Background>
       <HeaderContent>
-        <LogoImg src={Logo} alt="Logo"/>
+        <LogoImg src={Logo} alt="Logo" />
         <HeaderTop>
           <DevInfo>
-            <img src={profilePhoto} alt="dev"/>
+            <img src={profilePhoto} alt="dev" />
             <DevName>
               <span>{name}</span>
               <span>{username}</span>
             </DevName>
           </DevInfo>
           <HeaderBtn>
-            <img src={Home} alt="Inicio"/>
-            <img src={Logout} alt="Sair"/>
+            <img src={Home} alt="Inicio" />
+            <img src={Logout} alt="Sair" />
           </HeaderBtn>
         </HeaderTop>
       </HeaderContent>
