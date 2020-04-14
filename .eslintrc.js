@@ -22,6 +22,7 @@ module.exports = {
   },
   plugins: ['react', 'prettier'],
   rules: {
+    'react/display-name': 'off',
     'comma-dangle': ['error', 'only-multiline'],
     'arrow-parens': 0,
     'generator-star-spacing': 0,
