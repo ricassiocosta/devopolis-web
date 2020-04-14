@@ -1,9 +1,10 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import Logo from '../assets/logo.svg'
-import Home from '../assets/home.svg'
-import Logout from '../assets/logout.svg'
+import Logo from '../assets/images/logo.svg'
+import Home from '../assets/images/home.svg'
+import Logout from '../assets/images/logout.svg'
 
 const Background = styled.div`
   width: 100%;
@@ -64,17 +65,17 @@ const HeaderBtn = styled.div`
   }
 `
 
-export default function Header() {
+const Header = ({ profilePhoto, name, username }) => {
   return (
     <Background>
       <HeaderContent>
         <LogoImg src={Logo} alt="Logo"/>
         <HeaderTop>
           <DevInfo>
-            <img src="https://avatars1.githubusercontent.com/u/42079830?v=4" alt="dev"/>
+            <img src={profilePhoto} alt="dev"/>
             <DevName>
-              <span>Ricássio Costa</span>
-              <span>@ricassiocosta</span>
+              <span>{name}</span>
+              <span>{username}</span>
             </DevName>
           </DevInfo>
           <HeaderBtn>
@@ -86,3 +87,11 @@ export default function Header() {
     </Background>
   )
 }
+
+Header.propTypes = {
+  profilePhoto: PropTypes.string,
+  name: PropTypes.string,
+  username: PropTypes.string
+};
+
+export default Header

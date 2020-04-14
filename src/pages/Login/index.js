@@ -1,14 +1,14 @@
 import React from 'react'
 
 import { HeaderWelcome, Logo, LoginBox, LoginButton, Img, LoginPage, Content, Container } from './styles'
-import logo from '../../assets/logo.svg'
-import githubLogo from '../../assets/github.svg'
-import welcome from '../../assets/welcome.jpg'
+import logo from '../../assets/images/logo.svg'
+import githubLogo from '../../assets/images/github.svg'
+import welcome from '../../assets/images/welcome.jpg'
 
 import { AUTHORIZE_URL } from '../../constants'
 import { GITHUB_CLIENT_ID } from '../../env'
 
-export default function Login () {
+const Login = () => {
   return (
     <LoginPage>
       <HeaderWelcome>
@@ -33,3 +33,5 @@ export default function Login () {
     </LoginPage>
   )
 }
+
+export default Login

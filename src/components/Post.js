@@ -1,8 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import postImg from '../assets/post-img-test.png'
-import likeImg from '../assets/like.svg'
+import postImg from '../assets/images/post-img-test.png'
+import likeImg from '../assets/images/like.svg'
 
 const Background = styled.div`
   width: 460px;
@@ -42,14 +43,19 @@ const Like = styled.div`
 const Description = styled.div`
   font-size: 14px;
   padding: 3px;
+
+  span:first-child {
+    font-family: 'RobotoBold';
+    padding-right: 5px;
+  }
 `
 
-export default function Post() {
+const Post = ({ authorPhoto, author, post }) => {
   return(
     <Background>
       <PostTitle>
-        <img src="https://avatars1.githubusercontent.com/u/42079830?v=4" alt="devprofile"/>
-        <span>ricassiocosta</span>
+        <img src={authorPhoto} alt="devprofile"/>
+        <span>{author}</span>
       </PostTitle>
       <Img src={postImg}/>
       <Like>
@@ -57,8 +63,17 @@ export default function Post() {
         <span>Gostei</span>
       </Like>
       <Description>
-        <span><strong>ricassiocosta</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet, dui bibendum venenatis lacinia, sapien felis sodales mauris, eget convallis dolor lectus sed mi.</span>
+        <span>{author}</span>
+        <span>{post}</span>
       </Description>
     </Background>
   )
 }
+
+Post.propTypes = {
+  authorPhoto: PropTypes.string,
+  author: PropTypes.string,
+  post: PropTypes.string
+};
+
+export default Post
