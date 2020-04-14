@@ -49,8 +49,7 @@ const Description = styled.div`
   }
 `
 
-export default function Post(props) {
-  const { authorPhoto, author, post } = props
+const Post = ({ authorPhoto, author, post }) => {
   return(
     <Background>
       <PostTitle>
@@ -69,3 +68,5 @@ export default function Post(props) {
     </Background>
   )
 }
+
+export default Post

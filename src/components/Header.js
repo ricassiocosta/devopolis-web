@@ -64,17 +64,17 @@ const HeaderBtn = styled.div`
   }
 `
 
-export default function Header(props) {
+const Header = ({ profilePhoto, name, username }) => {
   return (
     <Background>
       <HeaderContent>
         <LogoImg src={Logo} alt="Logo"/>
         <HeaderTop>
           <DevInfo>
-            <img src={props.profilePhoto} alt="dev"/>
+            <img src={profilePhoto} alt="dev"/>
             <DevName>
-              <span>{props.name}</span>
-              <span>{props.username}</span>
+              <span>{name}</span>
+              <span>{username}</span>
             </DevName>
           </DevInfo>
           <HeaderBtn>
@@ -86,3 +86,5 @@ export default function Header(props) {
     </Background>
   )
 }
+
+export default Header
