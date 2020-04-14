@@ -9,7 +9,7 @@ import { store, persistor } from './store'
 
 import Routes from './routes'
 
-export default function App () {
+export default function App() {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
