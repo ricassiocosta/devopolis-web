@@ -3,12 +3,12 @@ import { store } from '../store'
 import { API_URL } from '../env'
 
 const api = axios.create({
-  baseURL: API_URL,
+  baseURL: API_URL
 })
 
-api.interceptors.request.use(async config => {
+api.interceptors.request.use(config => {
   const state = store.getState()
-  const token = state.root.token
+  const { token } = state.root
 
   if (token) {
     config.headers.Authorization = `Bearer ${token}`

@@ -17,11 +17,11 @@ import welcome from '../../assets/images/welcome.jpg'
 import { AUTHORIZE_URL } from '../../constants'
 import { GITHUB_CLIENT_ID } from '../../env'
 
-export default function Login() {
+export default function Login () {
   return (
     <LoginPage>
       <HeaderWelcome>
-        <span>print(' Be welcome to our community! ');</span>
+        <span>print(&apos; Be welcome to our community! &apos;);</span>
       </HeaderWelcome>
 
       <Content>
