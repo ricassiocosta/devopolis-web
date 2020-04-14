@@ -5,7 +5,7 @@ import Login from './pages/Login/index'
 import Feed from './pages/Feed/index'
 import Callback from './pages/Callback/index'
 
-export default function Routes() {
+const Routes = () => {
   return (
     <BrowserRouter>
       <Switch>
@@ -16,3 +16,5 @@ export default function Routes() {
     </BrowserRouter>
   )
 }
+
+export default Routes

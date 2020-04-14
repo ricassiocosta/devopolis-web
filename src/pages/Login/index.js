@@ -17,7 +17,7 @@ import welcome from '../../assets/images/welcome.jpg'
 import { AUTHORIZE_URL } from '../../constants'
 import { GITHUB_CLIENT_ID } from '../../env'
 
-export default function Login() {
+const Login = () => {
   return (
     <LoginPage>
       <HeaderWelcome>
@@ -45,3 +45,5 @@ export default function Login() {
     </LoginPage>
   )
 }
+
+export default Login

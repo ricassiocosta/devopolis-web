@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import Logo from '../assets/images/logo.svg'
@@ -85,5 +86,11 @@ const Header = ({ profilePhoto, name, username }) => {
     </Background>
   )
 }
+
+Header.propTypes = {
+  profilePhoto: PropTypes.string,
+  name: PropTypes.string,
+  username: PropTypes.string
+};
 
 export default Header

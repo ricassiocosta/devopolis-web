@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import postImg from '../assets/images/post-img-test.png'
@@ -68,5 +69,11 @@ const Post = ({ authorPhoto, author, post }) => {
     </Background>
   )
 }
+
+Post.propTypes = {
+  authorPhoto: PropTypes.string,
+  author: PropTypes.string,
+  post: PropTypes.string
+};
 
 export default Post
