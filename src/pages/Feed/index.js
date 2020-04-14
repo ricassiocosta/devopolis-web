@@ -5,12 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import actions from '../../store/actions'
 
-import { 
-  FeedPage,
-  Content,
-  Sidebar,
-  FeedHistory,
-} from './styles'
+import { FeedPage, Content, Sidebar, FeedHistory } from './styles'
 
 import Header from '../../components/Header'
 import Post from '../../components/Post'
@@ -43,20 +38,16 @@ const Feed = () => {
         logoutHandler={logoutHandler}
       />
       <Content>
-        <Sidebar>
-
-        </Sidebar>
+        <Sidebar></Sidebar>
         <FeedHistory>
-          {
-            posts.map(post => (
-              <Post
-                key={post._id}
-                author={post.author}
-                authorPhoto={post.authorPhoto}
-                post={post.post}
-              />
-            ))
-          }
+          {posts.map(post => (
+            <Post
+              key={post._id}
+              author={post.author}
+              authorPhoto={post.authorPhoto}
+              post={post.post}
+            />
+          ))}
         </FeedHistory>
       </Content>
     </FeedPage>

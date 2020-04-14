@@ -3,7 +3,7 @@ import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 
 import GlobalStyle from './assets/stylesheets'
-import GlobalFonts from './assets/fonts';
+import GlobalFonts from './assets/fonts'
 
 import { store, persistor } from './store'
 

@@ -1,19 +1,19 @@
-import axios from "axios";
+import axios from 'axios'
 import { store } from '../store'
 import { API_URL } from '../env'
 
 const api = axios.create({
-  baseURL: API_URL
-});
+  baseURL: API_URL,
+})
 
-api.interceptors.request.use(async config => {
+api.interceptors.request.use(config => {
   const state = store.getState()
-  const token = state.auth.token
+  const { token } = state.auth
 
   if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+    config.headers.Authorization = `Bearer ${token}`
   }
-  return config;
-});
+  return config
+})
 
-export default api;
+export default api

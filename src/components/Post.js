@@ -21,7 +21,7 @@ const PostTitle = styled.div`
     border-radius: 50%;
   }
   span {
-    font-family: 'RobotoBold'
+    font-family: 'RobotoBold';
   }
 `
 
@@ -51,15 +51,15 @@ const Description = styled.div`
 `
 
 const Post = ({ authorPhoto, author, post }) => {
-  return(
+  return (
     <Background>
       <PostTitle>
-        <img src={authorPhoto} alt="devprofile"/>
+        <img src={authorPhoto} alt="devprofile" />
         <span>{author}</span>
       </PostTitle>
-      <Img src={postImg}/>
+      <Img src={postImg} />
       <Like>
-        <img src={likeImg} alt="like"/>
+        <img src={likeImg} alt="like" />
         <span>Gostei</span>
       </Like>
       <Description>

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useLocation, useHistory } from "react-router-dom";
+import { useLocation, useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
 import actions from '../../store/actions'
@@ -16,9 +16,9 @@ const Callback = () => {
   const { setDevInfo } = actions.dev
 
   useEffect(() => {
-    async function callApi () {
+    async function callApi() {
       const githubToken = await getGithubToken(query.get('code'))
-  
+
       const { token, username } = await authenticate(githubToken)
       dispatch(authenticateAction(token))
 
@@ -28,7 +28,7 @@ const Callback = () => {
       history.replace('/')
     }
     callApi()
-  });
+  })
 
   return <></>
 }

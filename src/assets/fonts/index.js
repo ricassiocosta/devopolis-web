@@ -34,6 +34,6 @@ const GlobalFonts = createGlobalStyle`
     font-weight: 700;
     font-style: bold;
   }
-` 
+`
 
 export default GlobalFonts

@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const FeedPage = styled.div`
   font-family: 'Roboto';
-  background: #E5E5E5;
+  background: #e5e5e5;
   width: 100%;
   height: 100vh;
 `
@@ -10,7 +10,7 @@ export const Content = styled.div`
   width: 800px;
   display: flex;
   margin: 0 auto;
-  margin-top: 10px
+  margin-top: 10px;
 `
 export const Sidebar = styled.div`
   width: 250px;
@@ -25,8 +25,7 @@ export const FeedHistory = styled.div`
   background: #fff;
   margin-left: 26px;
   overflow-y: auto;
-  ::-webkit-scrollbar{
-    display: none
+  ::-webkit-scrollbar {
+    display: none;
   }
 `
-
