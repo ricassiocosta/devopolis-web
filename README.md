@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./src/assets/logo.svg" alt="Devopolis"><br>
+  <img src="./src/assets/images/logo.svg" alt="Devopolis"><br>
   <a href="https://github.com/ricassiocosta/Devopolis-frontend/blob/master/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/ricassiocosta/Devopolis-frontend?color=008CFF"></a>
 </div><br>
 

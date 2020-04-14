@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Logo from '../assets/logo.svg'
-import Home from '../assets/home.svg'
-import Logout from '../assets/logout.svg'
+import Logo from '../assets/images/logo.svg'
+import Home from '../assets/images/home.svg'
+import Logout from '../assets/images/logout.svg'
 
 const Background = styled.div`
   width: 100%;

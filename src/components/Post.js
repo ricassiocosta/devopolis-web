@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import postImg from '../assets/post-img-test.png'
-import likeImg from '../assets/like.svg'
+import postImg from '../assets/images/post-img-test.png'
+import likeImg from '../assets/images/like.svg'
 
 const Background = styled.div`
   width: 460px;

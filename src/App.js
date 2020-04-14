@@ -1,8 +1,8 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 
-import GlobalStyle from './GlobalStyle.js'
-import GlobalFonts from './fonts/fonts';
+import GlobalStyle from './assets/stylesheets'
+import GlobalFonts from './assets/fonts';
 
 import store from './store'
 
