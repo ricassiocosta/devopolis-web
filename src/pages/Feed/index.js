@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { getDashboard } from '../../services/dashboard'
 
 import { useSelector } from 'react-redux'
 
@@ -13,7 +14,16 @@ import Header from '../../components/Header'
 import Post from '../../components/Post'
 
 export default function Feed() {
+  const [posts, setPosts] = useState([])
   const devInfo = useSelector(state => state.dev.devInfo)
+
+  useEffect(() => {
+    async function callApi() {
+      const posts = await getDashboard()
+      setPosts(posts)
+    }
+    callApi()
+  }, [])
 
   return (
     <FeedPage>
@@ -27,11 +37,16 @@ export default function Feed() {
 
         </Sidebar>
         <FeedHistory>
-          <Post/>
-          <Post/>
-          <Post/>
-          <Post/>
-          <Post/>
+          {
+            posts.map(post => (
+              <Post
+                key={post._id}
+                author={post.author}
+                authorPhoto={post.authorPhoto}
+                post={post.post}
+              />
+            ))
+          }
         </FeedHistory>
       </Content>
     </FeedPage>
