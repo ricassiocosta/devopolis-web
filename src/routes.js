@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter, Route, Redirect } from 'react-router-dom'
 
 import Login from './pages/Login/index'
 import Feed from './pages/Feed/index'
@@ -24,11 +24,9 @@ const Routes = (store) => {
 
   return (
     <BrowserRouter>
-      <Switch>
-        <CustomRoute path="/login" exact component={Login} isPublic={true} />
-        <CustomRoute path="/callback" exact component={Callback} isPublic={true} />
-        <CustomRoute path="/" exact component={Feed} />
-      </Switch>
+      <CustomRoute path="/login" exact component={Login} isPublic={true} />
+      <CustomRoute path="/callback" exact component={Callback} isPublic={true} />
+      <CustomRoute path="/" exact component={Feed} />
     </BrowserRouter>
   )
 }
