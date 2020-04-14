@@ -15,7 +15,7 @@ const App = () => {
       <PersistGate loading={null} persistor={persistor}>
         <GlobalStyle/>
         <GlobalFonts/>
-        <Routes />
+        { Routes(store) }
       </PersistGate> 
     </Provider>
   )
