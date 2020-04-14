@@ -1,9 +1,14 @@
-import { SET_TOKEN } from '../../action-types/auth'
+import { AUTHENTICATE, LOGOUT } from '../../action-types/auth'
 
-const setToken = (payload) => {
-  return { type: SET_TOKEN, payload };
+const authenticate = (payload) => {
+  return { type: AUTHENTICATE, payload };
+}
+
+const logout = () => {
+  return { type: LOGOUT };
 }
 
 export default {
-  setToken
+  authenticate,
+  logout
 }

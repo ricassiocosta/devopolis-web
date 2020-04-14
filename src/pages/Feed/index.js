@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { getDashboard } from '../../services/dashboard'
 
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+
+import actions from '../../store/actions'
 
 import { 
   FeedPage,
@@ -16,6 +18,8 @@ import Post from '../../components/Post'
 const Feed = () => {
   const [posts, setPosts] = useState([])
   const devInfo = useSelector(state => state.dev.devInfo)
+  const dispatch = useDispatch()
+  const { logout } = actions.auth
 
   useEffect(() => {
     async function callApi() {
@@ -25,12 +29,18 @@ const Feed = () => {
     callApi()
   }, [])
 
+  const logoutHandler = () => {
+    console.log('logout clicked')
+    return dispatch(logout)
+  }
+
   return (
     <FeedPage>
       <Header
         name={devInfo.name}
         username={devInfo.github_username}
         profilePhoto={devInfo.avatar_url}
+        logoutHandler={logoutHandler}
       />
       <Content>
         <Sidebar>

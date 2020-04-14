@@ -1,16 +1,18 @@
 
-import { SET_TOKEN } from '../../action-types/auth'
+import { AUTHENTICATE, LOGOUT } from '../../action-types/auth'
 
 const initialState = {
   token: undefined,
   isAuthenticated: false
 };
 
-const auth = (state = initialState, action) => {
-  if (action.type === SET_TOKEN) {
+const authReducer = (state = initialState, action) => {
+  if (action.type === AUTHENTICATE) {
     return { ...state, token: action.payload, isAuthenticated: true }
+  } else if (action.type === LOGOUT) {
+    return { ...state, token: undefined, isAuthenticated: false }
   }
   return state
 }
 
-export default auth
+export default authReducer

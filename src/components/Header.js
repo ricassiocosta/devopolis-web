@@ -65,7 +65,7 @@ const HeaderBtn = styled.div`
   }
 `
 
-const Header = ({ profilePhoto, name, username }) => {
+const Header = ({ profilePhoto, name, username, logoutHandler }) => {
   return (
     <Background>
       <HeaderContent>
@@ -80,7 +80,7 @@ const Header = ({ profilePhoto, name, username }) => {
           </DevInfo>
           <HeaderBtn>
             <img src={Home} alt="Inicio"/>
-            <img src={Logout} alt="Sair"/>
+            <img src={Logout} alt="Sair" onClick={() => logoutHandler()} />
           </HeaderBtn>
         </HeaderTop>
       </HeaderContent>
@@ -91,7 +91,8 @@ const Header = ({ profilePhoto, name, username }) => {
 Header.propTypes = {
   profilePhoto: PropTypes.string,
   name: PropTypes.string,
-  username: PropTypes.string
+  username: PropTypes.string,
+  logoutHandler: PropTypes.func
 };
 
 export default Header

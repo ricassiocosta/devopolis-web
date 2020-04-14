@@ -12,7 +12,7 @@ const Callback = () => {
   const query = new URLSearchParams(useLocation().search)
   const dispatch = useDispatch()
   const history = useHistory()
-  const { setToken } = actions.auth
+  const { authenticate: authenticateAction } = actions.auth
   const { setDevInfo } = actions.dev
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const Callback = () => {
       const githubToken = await getGithubToken(query.get('code'))
   
       const { token, username } = await authenticate(githubToken)
-      dispatch(setToken(token))
+      dispatch(authenticateAction(token))
 
       const devInfo = await getDevInfo(username)
       dispatch(setDevInfo(devInfo))

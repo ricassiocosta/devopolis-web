@@ -1,5 +1,7 @@
-const SET_TOKEN = 'SET_TOKEN'
+const AUTHENTICATE = 'AUTHENTICATE'
+const LOGOUT = 'LOGOUT'
 
 export {
-  SET_TOKEN
+  AUTHENTICATE,
+  LOGOUT
 }
