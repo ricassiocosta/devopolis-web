@@ -23,10 +23,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "lint": "eslint .",
-    "lint:fix": "yarn run eslint --fix",
-    "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|md|vue)\""
+    "eject": "react-scripts eject"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
@@ -44,8 +41,8 @@
     "prettier": "^2.0.4"
   },
   "lint-staged": {
-    "*.+(js|jsx)": "yarn run lint:fix",
-    "*.+(json|css|md)": "yarn run format"
+    "*.+(js|jsx)": "eslint --fix",
+    "*.+(json|css|md)": "prettier --write"
   },
   "husky": {
     "hooks": {

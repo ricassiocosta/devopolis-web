@@ -10,7 +10,7 @@ import { store, persistor } from './store'
 import Routes from './routes'
 
 const App = () => {
-  return ( 
+  return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <GlobalStyle />

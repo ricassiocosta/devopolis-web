@@ -5,7 +5,7 @@ import { SET_TOKEN } from '../actions/index'
 import dev from './dev'
 
 const initialState = {
-  token: undefined,
+  token: undefined
 }
 
 const root = (state = initialState, action) => {
@@ -17,7 +17,7 @@ const root = (state = initialState, action) => {
 
 const combinedReducers = combineReducers({
   root,
-  dev,
+  dev
 })
 
 export default combinedReducers

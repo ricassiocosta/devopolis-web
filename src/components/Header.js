@@ -91,6 +91,6 @@ Header.propTypes = {
   profilePhoto: PropTypes.string,
   name: PropTypes.string,
   username: PropTypes.string
-};
+}
 
 export default Header

@@ -8,7 +8,7 @@ import {
   Img,
   LoginPage,
   Content,
-  Container,
+  Container
 } from './styles'
 import logo from '../../assets/images/logo.svg'
 import githubLogo from '../../assets/images/github.svg'
