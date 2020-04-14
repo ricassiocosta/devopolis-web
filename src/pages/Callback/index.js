@@ -9,7 +9,7 @@ import { getGithubToken } from '../../services/github'
 import { authenticate } from '../../services/auth'
 import { getDevInfo } from '../../services/dev'
 
-export default function Callback () {
+const Callback = () => {
   const query = new URLSearchParams(useLocation().search)
   const dispatch = useDispatch()
   const history = useHistory()
@@ -31,3 +31,5 @@ export default function Callback () {
 
   return <></>
 }
+
+export default Callback

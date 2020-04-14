@@ -13,7 +13,7 @@ import {
 import Header from '../../components/Header'
 import Post from '../../components/Post'
 
-export default function Feed() {
+const Feed = () => {
   const [posts, setPosts] = useState([])
   const devInfo = useSelector(state => state.dev.devInfo)
 
@@ -52,3 +52,5 @@ export default function Feed() {
     </FeedPage>
   )
 }
+
+export default Feed

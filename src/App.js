@@ -9,7 +9,7 @@ import { store, persistor } from './store'
 
 import Routes from './routes'
 
-export default function App () {
+const App = () => {
   return ( 
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
@@ -20,3 +20,5 @@ export default function App () {
     </Provider>
   )
 }
+
+export default App
