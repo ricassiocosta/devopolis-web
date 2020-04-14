@@ -1,5 +1,9 @@
-export const SET_DEV_INFO = 'SET_DEV_INFO'
+import { SET_DEV_INFO } from '../../action-types/dev'
 
-export function setDevInfo(payload) {
+const setDevInfo = (payload) =>{
   return { type: SET_DEV_INFO, payload };
+}
+
+export default {
+  setDevInfo
 }

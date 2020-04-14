@@ -1,5 +1,7 @@
-export const SET_TOKEN = 'SET_TOKEN'
+import auth from './auth'
+import dev from './dev'
 
-export function setToken(payload) {
-  return { type: SET_TOKEN, payload };
+export default {
+  auth,
+  dev
 }

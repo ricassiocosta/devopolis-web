@@ -2,8 +2,7 @@ import React, { useEffect } from 'react'
 import { useLocation, useHistory } from "react-router-dom";
 import { useDispatch } from 'react-redux'
 
-import { setDevInfo } from '../../store/actions/dev'
-import { setToken } from '../../store/actions'
+import actions from '../../store/actions'
 
 import { getGithubToken } from '../../services/github'
 import { authenticate } from '../../services/auth'
@@ -13,6 +12,8 @@ const Callback = () => {
   const query = new URLSearchParams(useLocation().search)
   const dispatch = useDispatch()
   const history = useHistory()
+  const { setToken } = actions.auth
+  const { setDevInfo } = actions.dev
 
   useEffect(() => {
     async function callApi () {
