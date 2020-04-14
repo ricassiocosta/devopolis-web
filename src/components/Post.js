@@ -74,6 +74,6 @@ Post.propTypes = {
   authorPhoto: PropTypes.string,
   author: PropTypes.string,
   post: PropTypes.string
-};
+}
 
 export default Post

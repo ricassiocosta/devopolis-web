@@ -1,7 +1,7 @@
 import { SET_DEV_INFO } from '../../action-types/dev'
 
 const initialState = {
-  devInfo: undefined,
+  devInfo: undefined
 }
 
 const devReducer = (state = initialState, action) => {
