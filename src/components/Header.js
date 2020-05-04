@@ -63,9 +63,17 @@ const HeaderBtn = styled.div`
   img:nth-child(1){
     margin-right: 16px;
   }
+  img {
+    cursor: pointer;
+  }
 `
 
-const Header = ({ profilePhoto, name, username }) => {
+const Header = ({ profilePhoto, name, username, history }) => {
+  
+  function handleHome() {
+    history.push('/dashboard')
+  }
+
   return (
     <Background>
       <HeaderContent>
@@ -79,7 +87,7 @@ const Header = ({ profilePhoto, name, username }) => {
             </DevName>
           </DevInfo>
           <HeaderBtn>
-            <img src={Home} alt="Inicio"/>
+            <img src={Home} alt="Inicio" onClick={handleHome}/>
             <img src={Logout} alt="Sair"/>
           </HeaderBtn>
         </HeaderTop>

@@ -10,13 +10,35 @@ export const Content = styled.div`
   width: 800px;
   display: flex;
   margin: 0 auto;
-  margin-top: 10px
+  margin-top: 10px;
 `
 export const Sidebar = styled.div`
   width: 250px;
   height: 290px;
   border-radius: 10px;
   background: #fff;
+  position: relative;
+  line-height: 48px;
+  input {
+    margin-left: 12%;
+    height: 30px;
+    width: 75%;
+    border-radius: 5px;
+    margin-top: 10px;
+    background-color: #eeeeee;
+    text-indent: 30px;
+  }
+  #searchIcon {
+    position: absolute;
+    left: 37px;
+    top: 16px;
+  }
+  p {
+    font-family: 'RobotoBold';
+    font-size: 13px;
+    color: gray;
+    margin-bottom: -10px
+  }
 `
 export const FeedHistory = styled.div`
   width: 530px;
@@ -28,5 +50,21 @@ export const FeedHistory = styled.div`
   ::-webkit-scrollbar{
     display: none
   }
+`
+export const OnlineFriends = styled.div`
+  margin-left: 12%;
+  margin-top: 10px;
+  img {
+    width: 35px;
+    border-radius: 50%;
+  }
+  span {
+    font-family: 'RobotoBold';
+    margin-left: 5px;
+  }
+`
+export const Friend = styled.div`
+  display: flex;
+  align-items: center;
 `
 

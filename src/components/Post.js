@@ -10,6 +10,7 @@ const Background = styled.div`
   margin: 20px auto;
   background: #fbfbfb;
   border: 1px solid #d2d2d2;
+  border-radius: 5px;
 `
 const PostTitle = styled.div`
   display: flex;
@@ -31,6 +32,7 @@ const Img = styled.img`
 
 const Like = styled.div`
   padding: 3px;
+  margin-left: 3px;
   img {
     margin-right: 3px;
   }
@@ -42,7 +44,7 @@ const Like = styled.div`
 `
 const Description = styled.div`
   font-size: 14px;
-  padding: 3px;
+  padding: 7px;
 
   span:first-child {
     font-family: 'RobotoBold';
