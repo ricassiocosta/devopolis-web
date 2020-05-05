@@ -36,6 +36,7 @@ const DevInfo = styled.div`
   display: grid;
   grid-template-columns: 1fr 3fr;
   grid-gap: 5px;
+  cursor: pointer;
   img {
     width: 42px;
     border-radius: 50%;
@@ -50,6 +51,7 @@ const DevName = styled.div`
   }
   span:nth-child(2) {
     font-size: 11px;
+    font-family: 'Roboto';
   }
   display: flex;
   flex-direction: column;
@@ -69,6 +71,10 @@ const HeaderBtn = styled.div`
 `
 
 const Header = ({ profilePhoto, name, username, history }) => {
+
+  function handleProfile() {
+    history.push('/profile')
+  }
   
   function handleHome() {
     history.push('/dashboard')
@@ -79,7 +85,7 @@ const Header = ({ profilePhoto, name, username, history }) => {
       <HeaderContent>
         <LogoImg src={Logo} alt="Logo"/>
         <HeaderTop>
-          <DevInfo>
+          <DevInfo onClick={handleProfile}>
             <img src={profilePhoto} alt="dev"/>
             <DevName>
               <span>{name}</span>

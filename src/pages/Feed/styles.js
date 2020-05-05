@@ -24,14 +24,14 @@ export const Sidebar = styled.div`
     height: 30px;
     width: 75%;
     border-radius: 5px;
-    margin-top: 10px;
+    margin-top: 20px;
     background-color: #eeeeee;
     text-indent: 30px;
   }
   #searchIcon {
     position: absolute;
     left: 37px;
-    top: 16px;
+    top: 26px;
   }
   p {
     font-family: 'RobotoBold';
@@ -66,5 +66,6 @@ export const OnlineFriends = styled.div`
 export const Friend = styled.div`
   display: flex;
   align-items: center;
+  cursor: pointer;
 `
 

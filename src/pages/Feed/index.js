@@ -43,15 +43,15 @@ const Feed = ({ history }) => {
           <OnlineFriends>
             <p>Amigos Online</p>
             <Friend>
-              <img src="https://avatars1.githubusercontent.com/u/33037089?v=4"/>
+              <img src="https://avatars1.githubusercontent.com/u/33037089?v=4" alt=""/>
               <span>olucasgomes</span>
             </Friend>
             <Friend>
-              <img src="https://avatars2.githubusercontent.com/u/8683378?v=4"/>
+              <img src="https://avatars2.githubusercontent.com/u/8683378?v=4" alt=""/>
               <span>gustavoguanabara</span>
             </Friend>
             <Friend>
-              <img src="https://avatars1.githubusercontent.com/u/499550?v=4"/>
+              <img src="https://avatars1.githubusercontent.com/u/499550?v=4" alt=""/>
               <span>yyx990803</span>
             </Friend>
           </OnlineFriends>
