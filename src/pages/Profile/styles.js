@@ -10,13 +10,14 @@ export const Content = styled.div`
   width: 800px;
   background-color: white;
   display: flex;
+  flex-direction: column;
   margin: 0 auto;
   margin-top: 10px;
   padding: 30px;
   border-radius: 10px;
-  img {
-    width: 200px;
-    border-radius: 50%;
+  hr {
+    border: 1px solid #dddddd;
+    margin-top: 20px;
   }
 `
 export const ProfileHeader = styled.div`
@@ -24,6 +25,8 @@ export const ProfileHeader = styled.div`
   grid-template-columns: 2fr 3fr;
   gap: 20px;
   img {
+    width: 200px;
+    border-radius: 50%;
     margin-left: 15%
   }
 `
@@ -42,5 +45,14 @@ export const ProfileInfo = styled.div`
     font-size: 14px;
     margin-top: 8px;
     margin-bottom: 20px;
+  }
+`
+export const PostsHistory = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  margin: 30px 0 auto;
+  img {
+    width: 230px;
   }
 `

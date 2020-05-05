@@ -4,13 +4,12 @@ import { useSelector } from 'react-redux'
 import { 
   ProfilePage,
   ProfileHeader,
-  ProfileInfo 
+  ProfileInfo,
+  Content,
+  PostsHistory 
 } from './styles.js'
 import Header from '../../components/Header'
-
-import {
-  Content
-} from './styles.js'
+import ImgTest from '../../assets/images/post-img-test.png'
 
 const Profile = ({ history }) => {
   const devInfo = useSelector(state => state.dev.devInfo)
@@ -32,6 +31,15 @@ const Profile = ({ history }) => {
             <span><strong>02</strong> Publicações | <strong>18</strong> Conexões</span>
           </ProfileInfo>
         </ProfileHeader>
+        <hr/>
+        <PostsHistory>
+          <img src={ImgTest} alt=""/>
+          <img src={ImgTest} alt=""/>
+          <img src={ImgTest} alt=""/>
+          <img src={ImgTest} alt=""/>
+          <img src={ImgTest} alt=""/>
+          <img src={ImgTest} alt=""/>
+        </PostsHistory>
       </Content>
     </ProfilePage>
   )
