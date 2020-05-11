@@ -18,13 +18,6 @@ const modalContent = styled.div `
   border: 1px solid #888;
   width: 80%;
 `
-const closeBtn = styled.span `
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-`
-
 
 const Logout = () => {
   return(
