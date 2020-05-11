@@ -1,6 +1,7 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import { getPosts } from '../../services/posts'
 
+import { useSelector } from 'react-redux'
 import { 
   ProfilePage,
   ProfileHeader,
@@ -12,7 +13,18 @@ import Header from '../../components/Header'
 import ImgTest from '../../assets/images/post-img-test.png'
 
 const Profile = ({ history }) => {
+  const [posts, setPosts] = useState([])
   const devInfo = useSelector(state => state.dev.devInfo)
+
+  useEffect(() => {
+    async function callApi() {
+      const posts = await getPosts(devInfo.github_username)
+      setPosts(posts)
+    }
+    callApi()
+  }, [])
+
+
   return(
     <ProfilePage>
       <Header 
@@ -28,17 +40,16 @@ const Profile = ({ history }) => {
             <span>{devInfo.name}</span>
             <span>{devInfo.github_username}</span>
             <p>"{devInfo.bio}"</p>
-            <span><strong>02</strong> Publicações | <strong>18</strong> Conexões</span>
+            <span><strong>{posts.length}</strong> Publicações | <strong>{devInfo.followedList.length}</strong> Conexões</span>
           </ProfileInfo>
         </ProfileHeader>
         <hr/>
         <PostsHistory>
-          <img src={ImgTest} alt=""/>
-          <img src={ImgTest} alt=""/>
-          <img src={ImgTest} alt=""/>
-          <img src={ImgTest} alt=""/>
-          <img src={ImgTest} alt=""/>
-          <img src={ImgTest} alt=""/>
+          {
+            posts.map(post => (
+              <img src={ImgTest} alt=""/>
+            ))
+          }
         </PostsHistory>
       </Content>
     </ProfilePage>
