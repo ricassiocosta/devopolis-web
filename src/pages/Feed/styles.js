@@ -170,7 +170,7 @@ export const NewPostModal = styled.div`
       display: none;
     }
     img {
-      width: 100%;
+      max-height: 450px;
     }
     img.hidden {
       display: none;
@@ -179,9 +179,8 @@ export const NewPostModal = styled.div`
       resize: none;
       margin-top: 10px;
       outline: none;
-      ::placeholder {
-        font-size: 16px;
-        font-family: 'Roboto';
+      font-size: 16px;
+      font-family: 'Roboto';
       }
     }
     button {

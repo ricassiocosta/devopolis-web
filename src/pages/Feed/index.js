@@ -49,10 +49,10 @@ const Feed = ({ history }) => {
     const $ = document.querySelector.bind(document)
     const previewImg = $('.preview-img')
     const labelPreview = $('.label-preview')
-    const fileToUpload = e.target.files.item(0)
+    const image = e.target.files.item(0)
     const reader = new FileReader()
     reader.onload = e => previewImg.src = e.target.result
-    reader.readAsDataURL(fileToUpload)
+    reader.readAsDataURL(image)
     labelPreview.classList.add('hidden')
     previewImg.classList.remove('hidden')
   }
