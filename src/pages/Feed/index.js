@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from 'react'
-import { FaSearch } from 'react-icons/fa'
-import { getDashboard } from '../../services/dashboard'
-
+import { FaSearch, FaNewspaper, FaTimes } from 'react-icons/fa'
+import { MdAddAPhoto } from 'react-icons/md'
 import { useSelector } from 'react-redux'
+
+import { getDashboard } from '../../services/dashboard'
+import Button from '../../components/Button'
 
 import { 
   FeedPage,
   Content,
-  Sidebar,
+  LeftBar,
+  RightBar,
+  NewPost,
   FeedHistory,
   OnlineFriends,
-  Friend
+  Friend,
+  NewPostBackground,
+  NewPostModal
 } from './styles'
 
 import Header from '../../components/Header'
@@ -28,6 +34,19 @@ const Feed = ({ history }) => {
     callApi()
   }, [])
 
+  function openNewPostModal() {
+    document.querySelector('#newPostModalBackground').style.display = "block";
+  }
+
+  function closeNewPostModal() {
+    document.querySelector('#newPostModalBackground').style.display = "none";
+  }
+
+  function handleNewPost(event) {
+    event.preventDefault();
+    // TODO
+  }
+
   return (
     <FeedPage>
       <Header
@@ -37,7 +56,7 @@ const Feed = ({ history }) => {
         history={history}
       />
       <Content>
-        <Sidebar>
+        <LeftBar>
           <input type="text" placeholder="Pesquisar devs"/>
           <FaSearch color="gray" id="searchIcon"/>
           <OnlineFriends>
@@ -55,19 +74,41 @@ const Feed = ({ history }) => {
               <span>yyx990803</span>
             </Friend>
           </OnlineFriends>
-        </Sidebar>
-        <FeedHistory>
-          {
-            posts.map(post => (
-              <Post
-                key={post._id}
-                author={post.author}
-                authorPhoto={post.authorPhoto}
-                post={post.post}
-              />
-            ))
-          }
-        </FeedHistory>
+        </LeftBar>
+        <RightBar>
+          <NewPost>
+            <button onClick={openNewPostModal}>
+              <FaNewspaper color="rgba(0,0,0,0.6)"/>
+              <span>Comece uma publicação</span>
+            </button>
+            <NewPostBackground id="newPostModalBackground">
+              <NewPostModal>
+                <FaTimes id="closeModal" onClick={closeNewPostModal}/>
+                <span>Crie uma publicação</span>
+                <hr/>
+                <form onSubmit={handleNewPost}>
+                  <input type="file" name="postImage" id="postImage" accept="image/*"/>
+                  <label htmlFor="postImage"><MdAddAPhoto color="rgba(0,0,0,0.6)"/></label>
+                  <textarea name="postBody" id="postBody" cols="30" rows="10" placeholder="No que você está pensando?"></textarea>
+                  <hr/>
+                  <button type="submit">Publicar</button>
+                </form>
+              </NewPostModal>
+            </NewPostBackground>
+          </NewPost>
+          <FeedHistory>
+            {
+              posts.map(post => (
+                <Post
+                  key={post._id}
+                  author={post.author}
+                  authorPhoto={post.authorPhoto}
+                  post={post.post}
+                />
+              ))
+            }
+          </FeedHistory>
+        </RightBar>
       </Content>
     </FeedPage>
   )
