@@ -119,12 +119,13 @@ export const NewPostBackground = styled.div`
 export const NewPostModal = styled.div`
   position: relative;
   background-color: #fefefe;
-  margin: 10% auto;
+  margin: 0 auto;
+  margin-top: 5%;
   padding: 20px;
   border: 1px solid #888;
   border-radius: 5px;
   width: 500px;
-  height: 650px;
+  padding: 20px;
   text-align: center;
   span {
     font-size: 18px;
@@ -164,6 +165,15 @@ export const NewPostModal = styled.div`
       :hover {
         background-color: #eeee;
       }
+    }
+    label.hidden {
+      display: none;
+    }
+    img {
+      width: 100%;
+    }
+    img.hidden {
+      display: none;
     }
     textarea {
       resize: none;

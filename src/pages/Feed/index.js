@@ -4,7 +4,8 @@ import { MdAddAPhoto } from 'react-icons/md'
 import { useSelector } from 'react-redux'
 
 import { getDashboard } from '../../services/dashboard'
-import Button from '../../components/Button'
+import Header from '../../components/Header'
+import Post from '../../components/Post'
 
 import { 
   FeedPage,
@@ -19,9 +20,6 @@ import {
   NewPostModal
 } from './styles'
 
-import Header from '../../components/Header'
-import Post from '../../components/Post'
-
 const Feed = ({ history }) => {
   const [posts, setPosts] = useState([])
   const devInfo = useSelector(state => state.dev.devInfo)
@@ -35,16 +33,28 @@ const Feed = ({ history }) => {
   }, [])
 
   function openNewPostModal() {
-    document.querySelector('#newPostModalBackground').style.display = "block";
+    document.querySelector('#newPostModalBackground').style.display = "block"
   }
 
   function closeNewPostModal() {
-    document.querySelector('#newPostModalBackground').style.display = "none";
+    document.querySelector('#newPostModalBackground').style.display = "none"
   }
 
   function handleNewPost(event) {
-    event.preventDefault();
+    event.preventDefault()
     // TODO
+  }
+
+  function previewImage(e) {
+    const $ = document.querySelector.bind(document)
+    const previewImg = $('.preview-img')
+    const labelPreview = $('.label-preview')
+    const fileToUpload = e.target.files.item(0)
+    const reader = new FileReader()
+    reader.onload = e => previewImg.src = e.target.result
+    reader.readAsDataURL(fileToUpload)
+    labelPreview.classList.add('hidden')
+    previewImg.classList.remove('hidden')
   }
 
   return (
@@ -87,8 +97,9 @@ const Feed = ({ history }) => {
                 <span>Crie uma publicação</span>
                 <hr/>
                 <form onSubmit={handleNewPost}>
-                  <input type="file" name="postImage" id="postImage" accept="image/*"/>
-                  <label htmlFor="postImage"><MdAddAPhoto color="rgba(0,0,0,0.6)"/></label>
+                  <input type="file" name="postImage" id="postImage" accept="image/*" onChange={previewImage}/>
+                  <img className="preview-img hidden" alt="preview"></img>
+                  <label htmlFor="postImage" className="label-preview"><MdAddAPhoto color="rgba(0,0,0,0.6)"/></label>
                   <textarea name="postBody" id="postBody" cols="30" rows="10" placeholder="No que você está pensando?"></textarea>
                   <hr/>
                   <button type="submit">Publicar</button>
