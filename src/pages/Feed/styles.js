@@ -169,8 +169,8 @@ export const NewPostModal = styled.div`
     label.hidden {
       display: none;
     }
-    img {
-      max-height: 450px;
+    img.preview-img {
+      height: 458px;
     }
     img.hidden {
       display: none;
@@ -181,7 +181,6 @@ export const NewPostModal = styled.div`
       outline: none;
       font-size: 16px;
       font-family: 'Roboto';
-      }
     }
     button {
       background-color: #0F92FF;
@@ -194,8 +193,19 @@ export const NewPostModal = styled.div`
       align-self: center;
       margin-top: -10px !important;
       :hover {
-        filter: brightness(0.8)
+        filter: brightness(0.8);
       }
+    }
+    button.cropImage {
+      background-color: #07c42a;
+      margin-top: 20px !important;
+      margin-bottom: 20px !important;
+    }
+    button.hidden {
+      display: none;
+    }
+    .react-crop.hidden {
+      display: none;
     }
   }
 `

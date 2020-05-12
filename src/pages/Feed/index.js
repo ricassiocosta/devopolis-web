@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { FaSearch, FaNewspaper, FaTimes } from 'react-icons/fa'
 import { MdAddAPhoto } from 'react-icons/md'
 import { useSelector } from 'react-redux'
+import ReactCrop from 'react-image-crop'
+import 'react-image-crop/dist/ReactCrop.css'
 
 import { getDashboard } from '../../services/dashboard'
 import Header from '../../components/Header'
@@ -21,8 +23,13 @@ import {
 } from './styles'
 
 const Feed = ({ history }) => {
+  const $ = document.querySelector.bind(document)
   const [posts, setPosts] = useState([])
   const devInfo = useSelector(state => state.dev.devInfo)
+  const [upImg, setUpImg] = useState()
+  const imgRef = useRef(null)
+  const [crop, setCrop] = useState({ unit: '%', width: 30, aspect: 1 / 1 })
+  const [previewUrl, setPreviewUrl] = useState()
 
   useEffect(() => {
     async function callApi() {
@@ -44,17 +51,71 @@ const Feed = ({ history }) => {
     event.preventDefault()
     // TODO
   }
-
   function previewImage(e) {
-    const $ = document.querySelector.bind(document)
     const previewImg = $('.preview-img')
     const labelPreview = $('.label-preview')
-    const image = e.target.files.item(0)
-    const reader = new FileReader()
-    reader.onload = e => previewImg.src = e.target.result
-    reader.readAsDataURL(image)
+    const cropButton = $('.cropImage')
+    const crop = $('.react-crop')
+    previewImg.src = previewUrl
     labelPreview.classList.add('hidden')
+    crop.classList.add('hidden')
+    cropButton.classList.add('hidden')
     previewImg.classList.remove('hidden')
+  }
+
+  const onSelectFile = e => {
+    if (e.target.files && e.target.files.length > 0) {
+      const reader = new FileReader()
+      reader.addEventListener('load', () => setUpImg(reader.result))
+      reader.readAsDataURL(e.target.files[0])
+    }
+  }
+  
+  const onLoad = useCallback(img => {
+    imgRef.current = img
+    const labelPreview = $('.label-preview')
+    const cropImage = $('.cropImage')
+    labelPreview.classList.add('hidden')
+    cropImage.classList.remove('hidden')
+  }, [$])
+
+  const makeClientCrop = async crop => {
+    if (imgRef.current && crop.width && crop.height) {
+      createCropPreview(imgRef.current, crop, 'newFile.jpeg')
+    }
+  }
+
+  const createCropPreview = async (image, crop, fileName) => {
+    const canvas = document.createElement('canvas')
+    const scaleX = image.naturalWidth / image.width
+    const scaleY = image.naturalHeight / image.height
+    canvas.width = crop.width
+    canvas.height = crop.height
+    const ctx = canvas.getContext('2d')
+
+    ctx.drawImage(
+      image,
+      crop.x * scaleX,
+      crop.y * scaleY,
+      crop.width * scaleX,
+      crop.height * scaleY,
+      0,
+      0,
+      crop.width,
+      crop.height
+    )
+
+    return new Promise((resolve, reject) => {
+      canvas.toBlob(blob => {
+        if (!blob) {
+          reject(new Error('Canvas is empty'))
+          return
+        }
+        blob.name = fileName
+        window.URL.revokeObjectURL(previewUrl)
+        setPreviewUrl(window.URL.createObjectURL(blob))
+      }, 'image/jpeg')
+    })
   }
 
   return (
@@ -97,10 +158,19 @@ const Feed = ({ history }) => {
                 <span>Crie uma publicação</span>
                 <hr/>
                 <form onSubmit={handleNewPost}>
-                  <input type="file" name="postImage" id="postImage" accept="image/*" onChange={previewImage}/>
+                  <input type="file" name="post-image" id="post-image" accept="image/*" onChange={onSelectFile}/>
                   <img className="preview-img hidden" alt="preview"></img>
-                  <label htmlFor="postImage" className="label-preview"><MdAddAPhoto color="rgba(0,0,0,0.6)"/></label>
-                  <textarea name="postBody" id="postBody" cols="30" rows="10" placeholder="No que você está pensando?"></textarea>
+                  <ReactCrop
+                    className="react-crop"
+                    src={upImg}
+                    onImageLoaded={onLoad}
+                    crop={crop}
+                    onChange={c => setCrop(c)}
+                    onComplete={makeClientCrop}
+                  />
+                  <button class="cropImage hidden" onClick={previewImage}>Cortar</button>
+                  <label htmlFor="post-image" className="label-preview"><MdAddAPhoto color="rgba(0,0,0,0.6)"/></label>
+                  <textarea name="post-body" id="post-body" cols="30" rows="10" placeholder="No que você está pensando?"></textarea>
                   <hr/>
                   <button type="submit">Publicar</button>
                 </form>
