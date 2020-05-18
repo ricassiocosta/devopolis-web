@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import postImg from '../assets/images/post-img-test.png'
 import likeImg from '../assets/images/like.svg'
 
 const Background = styled.div`
@@ -52,14 +51,14 @@ const Description = styled.div`
   }
 `
 
-const Post = ({ authorPhoto, author, post }) => {
+const Post = ({ authorPhoto, author, post, thumbnail }) => {
   return(
     <Background>
       <PostTitle>
         <img src={authorPhoto} alt="devprofile"/>
         <span>{author}</span>
       </PostTitle>
-      <Img src={postImg}/>
+      <Img src={"data:image/png;base64," + thumbnail} />
       <Like>
         <img src={likeImg} alt="like"/>
         <span>Gostei</span>
@@ -75,7 +74,8 @@ const Post = ({ authorPhoto, author, post }) => {
 Post.propTypes = {
   authorPhoto: PropTypes.string,
   author: PropTypes.string,
-  post: PropTypes.string
+  post: PropTypes.string,
+  thumbnail: PropTypes.string
 };
 
 export default Post
