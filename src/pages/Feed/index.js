@@ -64,6 +64,7 @@ const Feed = ({ history }) => {
                 author={post.author}
                 authorPhoto={post.authorPhoto}
                 post={post.post}
+                thumbnail={post.thumbnail}
               />
             ))
           }
