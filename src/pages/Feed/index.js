@@ -6,6 +6,7 @@ import ReactCrop from 'react-image-crop'
 import 'react-image-crop/dist/ReactCrop.css'
 
 import { getDashboard } from '../../services/dashboard'
+import { createPost } from '../../services/posts'
 import Header from '../../components/Header'
 import Post from '../../components/Post'
 
@@ -30,6 +31,8 @@ const Feed = ({ history }) => {
   const imgRef = useRef(null)
   const [crop, setCrop] = useState({ unit: '%', width: 30, aspect: 1 / 1 })
   const [previewUrl, setPreviewUrl] = useState()
+  const [newPostContent, setNewPostContent] = useState('')
+  const [newPostThumbnail, setNewPostThumbnail] = useState('')
 
   useEffect(() => {
     async function callApi() {
@@ -47,8 +50,10 @@ const Feed = ({ history }) => {
     document.querySelector('#newPostModalBackground').style.display = "none"
   }
 
-  function handleNewPost(event) {
+  async function handleNewPost(event) {
     event.preventDefault()
+    await createPost(newPostContent, newPostThumbnail)
+    closeNewPostModal()
     // TODO
   }
   function previewImage(e) {
@@ -65,9 +70,11 @@ const Feed = ({ history }) => {
 
   const onSelectFile = e => {
     if (e.target.files && e.target.files.length > 0) {
+      const [file] = e.target.files
       const reader = new FileReader()
       reader.addEventListener('load', () => setUpImg(reader.result))
-      reader.readAsDataURL(e.target.files[0])
+      reader.readAsDataURL(file)
+      setNewPostThumbnail(file)
     }
   }
   
@@ -158,7 +165,12 @@ const Feed = ({ history }) => {
                 <span>Crie uma publicação</span>
                 <hr/>
                 <form onSubmit={handleNewPost}>
-                  <input type="file" name="post-image" id="post-image" accept="image/*" onChange={onSelectFile}/>
+                  <input
+                    type="file"
+                    name="post-image"
+                    id="post-image"
+                    accept="image/*"
+                    onChange={onSelectFile} />
                   <img className="preview-img hidden" alt="preview"></img>
                   <ReactCrop
                     className="react-crop"
@@ -168,9 +180,16 @@ const Feed = ({ history }) => {
                     onChange={c => setCrop(c)}
                     onComplete={makeClientCrop}
                   />
-                  <button class="cropImage hidden" onClick={previewImage}>Cortar</button>
+                  <button className="cropImage hidden" onClick={previewImage}>Cortar</button>
                   <label htmlFor="post-image" className="label-preview"><MdAddAPhoto color="rgba(0,0,0,0.6)"/></label>
-                  <textarea name="post-body" id="post-body" cols="30" rows="10" placeholder="No que você está pensando?"></textarea>
+                  <textarea
+                    name="post-body"
+                    id="post-body"
+                    cols="30"
+                    rows="10"
+                    value={newPostContent}
+                    onChange={(e) => setNewPostContent(e.target.value)}
+                    placeholder="No que você está pensando?" />
                   <hr/>
                   <button type="submit">Publicar</button>
                 </form>
