@@ -10,7 +10,6 @@ import {
   PostsHistory 
 } from './styles.js'
 import Header from '../../components/Header'
-import ImgTest from '../../assets/images/post-img-test.png'
 
 const Profile = ({ history }) => {
   const [posts, setPosts] = useState([])
@@ -47,7 +46,7 @@ const Profile = ({ history }) => {
         <PostsHistory>
           {
             posts.map(post => (
-              <img src={ImgTest} alt=""/>
+              <img src={"data:image/png;base64," + post.thumbnail} alt=""/>
             ))
           }
         </PostsHistory>
