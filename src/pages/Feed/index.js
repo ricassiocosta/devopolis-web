@@ -57,6 +57,7 @@ const Feed = ({ history }) => {
     // TODO
   }
   function previewImage(e) {
+    e.preventDefault()
     const previewImg = $('.preview-img')
     const labelPreview = $('.label-preview')
     const cropButton = $('.cropImage')
