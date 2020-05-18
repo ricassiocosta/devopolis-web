@@ -10,7 +10,6 @@ import {
   PostsHistory 
 } from './styles.js'
 import Header from '../../components/Header'
-import ImgTest from '../../assets/images/post-img-test.png'
 
 const Profile = ({ history }) => {
   const [posts, setPosts] = useState([])
