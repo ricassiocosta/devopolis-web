@@ -14,6 +14,7 @@ const Routes = () => {
         <Route path="/callback" component={Callback}/>
         <Route path="/dashboard" component={Feed}/>
         <Route path="/profile" component={Profile}/>
+    />
       </Switch>
     </BrowserRouter>
   )
