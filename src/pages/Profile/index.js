@@ -21,7 +21,7 @@ const Profile = ({ history }) => {
       setPosts(posts)
     }
     callApi()
-  }, [])
+  }, [devInfo.github_username])
 
 
   return(
