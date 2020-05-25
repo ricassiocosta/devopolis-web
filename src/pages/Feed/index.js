@@ -7,6 +7,8 @@ import 'react-image-crop/dist/ReactCrop.css'
 
 import { getDashboard } from '../../services/dashboard'
 import { createPost } from '../../services/posts'
+import { search } from '../../services/search'
+
 import Header from '../../components/Header'
 import Post from '../../components/Post'
 
@@ -25,14 +27,18 @@ import {
 
 const Feed = ({ history }) => {
   const $ = document.querySelector.bind(document)
-  const [posts, setPosts] = useState([])
-  const devInfo = useSelector(state => state.dev.devInfo)
-  const [upImg, setUpImg] = useState()
+
   const imgRef = useRef(null)
+
+  const devInfo = useSelector(state => state.dev.devInfo)
+
   const [crop, setCrop] = useState({ unit: '%', width: 30, aspect: 1 / 1 })
+  const [posts, setPosts] = useState([])
+  const [upImg, setUpImg] = useState()
   const [previewUrl, setPreviewUrl] = useState()
   const [newPostContent, setNewPostContent] = useState('')
   const [newPostThumbnail, setNewPostThumbnail] = useState('')
+  const [searchQuery, setSearchQuery] = useState('')
 
   useEffect(() => {
     async function callApi() {
@@ -129,6 +135,16 @@ const Feed = ({ history }) => {
     })
   }
 
+  const onSearch = async (e) =>{
+    console.log({value: e.target.value})
+    setSearchQuery(e.target.value)
+
+    if (searchQuery.length > 3) {
+      const devs = await search(searchQuery)
+      console.log({ devs })
+    }
+  }
+
   return (
     <FeedPage>
       <Header
@@ -139,7 +155,7 @@ const Feed = ({ history }) => {
       />
       <Content>
         <LeftBar>
-          <input type="text" placeholder="Pesquisar devs"/>
+          <input placeholder="Pesquisar devs" value={searchQuery} onChange={onSearch}/>
           <FaSearch color="gray" id="searchIcon"/>
           <OnlineFriends>
             <p>Amigos Online</p>
