@@ -56,13 +56,17 @@ const Feed = ({ history }) => {
     closeNewPostModal()
     // TODO
   }
-  function previewImage(e) {
+  async function previewImage(e) {
     e.preventDefault()
     const previewImg = $('.preview-img')
     const labelPreview = $('.label-preview')
     const cropButton = $('.cropImage')
     const crop = $('.react-crop')
     previewImg.src = previewUrl
+    let file = await fetch(previewUrl)
+      .then(r => r.blob())
+      .then(blobFile => new File([blobFile], "thumbnail", { type: "image/png" }))
+    setNewPostThumbnail(file)
     labelPreview.classList.add('hidden')
     crop.classList.add('hidden')
     cropButton.classList.add('hidden')
@@ -75,7 +79,6 @@ const Feed = ({ history }) => {
       const reader = new FileReader()
       reader.addEventListener('load', () => setUpImg(reader.result))
       reader.readAsDataURL(file)
-      setNewPostThumbnail(file)
     }
   }
   
