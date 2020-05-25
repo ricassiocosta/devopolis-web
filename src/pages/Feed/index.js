@@ -39,6 +39,7 @@ const Feed = ({ history }) => {
   const [newPostContent, setNewPostContent] = useState('')
   const [newPostThumbnail, setNewPostThumbnail] = useState('')
   const [searchQuery, setSearchQuery] = useState('')
+  const [queriedDevs, setQueriedDevs] = useState([])
 
   useEffect(() => {
     async function callApi() {
@@ -136,12 +137,14 @@ const Feed = ({ history }) => {
   }
 
   const onSearch = async (e) =>{
-    console.log({value: e.target.value})
-    setSearchQuery(e.target.value)
+    const searchQuery = e.target.value
+    setSearchQuery(searchQuery)
 
-    if (searchQuery.length > 3) {
+    if (searchQuery.length >= 3) {
       const devs = await search(searchQuery)
-      console.log({ devs })
+      setQueriedDevs(devs)
+    } else {
+      setQueriedDevs([])
     }
   }
 
@@ -156,6 +159,13 @@ const Feed = ({ history }) => {
       <Content>
         <LeftBar>
           <input placeholder="Pesquisar devs" value={searchQuery} onChange={onSearch}/>
+          <div>
+            {
+              queriedDevs.map((dev, index) => (
+                  <div key={index}>{ dev.github_username }</div>
+              ))
+            }
+          </div>
           <FaSearch color="gray" id="searchIcon"/>
           <OnlineFriends>
             <p>Amigos Online</p>
