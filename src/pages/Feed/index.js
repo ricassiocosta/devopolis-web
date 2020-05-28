@@ -70,7 +70,7 @@ const Feed = ({ history }) => {
                   post={post.post}
                   thumbnail={post.thumbnail}
                 />
-              ))
+              )).reverse()
             }
           </FeedHistory>
         </RightBar>
