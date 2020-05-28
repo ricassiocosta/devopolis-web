@@ -16,6 +16,7 @@ import {
   RightBar,
   FeedHistory,
   OnlineFriends,
+  DevsFound,
   Friend
 } from './styles'
 
