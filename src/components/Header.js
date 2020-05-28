@@ -117,7 +117,8 @@ const LogoutModal = styled.div`
 
 const Header = ({ profilePhoto, name, username, history }) => {
 
-  function handleProfile() {
+  function handleProfile(username) {
+    localStorage.setItem('devUsername', username)
     history.push('/profile')
   }
   
@@ -142,7 +143,7 @@ const Header = ({ profilePhoto, name, username, history }) => {
       <HeaderContent>
         <LogoImg src={Logo} alt="Logo"/>
         <HeaderTop>
-          <DevInfo onClick={handleProfile}>
+          <DevInfo onClick={() => handleProfile(username)}>
             <img src={profilePhoto} alt="dev"/>
             <DevName>
               <span>{name}</span>

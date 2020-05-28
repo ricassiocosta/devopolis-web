@@ -47,6 +47,12 @@ const Feed = ({ history }) => {
       document.querySelector('.searchTitle').classList.add('hidden')
     }
   }
+
+  function handleDevProfile(dev) {
+    localStorage.setItem('devUsername', dev.github_username)
+    history.push('/profile')
+  }
+
   return (
     <FeedPage>
       <Header
@@ -62,7 +68,7 @@ const Feed = ({ history }) => {
             <p className="searchTitle hidden">Resultado:</p>
             {
               queriedDevs.map((dev, index) => (
-                  <div key={index}>
+                  <div key={index} onClick={() => handleDevProfile(dev)}>
                     <img src={dev.avatar_url} alt={`Foto de ` + dev.name}/>
                     <span>{ dev.github_username }</span>
                   </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { getPosts } from '../../services/posts'
+import { getDevInfo } from '../../services/dev'
 
-import { useSelector } from 'react-redux'
 import { 
   ProfilePage,
   ProfileHeader,
@@ -13,11 +13,22 @@ import Header from '../../components/Header'
 
 const Profile = ({ history }) => {
   const [posts, setPosts] = useState([])
-  const devInfo = useSelector(state => state.dev.devInfo)
+  const [devInfo, setDevInfo] = useState({})
+
+  useEffect(() => {
+    async function getDev() {
+      const response = await getDevInfo(localStorage.getItem('devUsername'))
+      setDevInfo(response)
+      alert('oi')
+      localStorage.removeItem('devUsername')
+    }
+    getDev()
+  }, [])
 
   useEffect(() => {
     async function callApi() {
       const posts = await getPosts(devInfo.github_username)
+      alert('oi')
       setPosts(posts)
     }
     callApi()
