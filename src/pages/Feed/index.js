@@ -21,6 +21,7 @@ import {
   FeedHistory,
   OnlineFriends,
   Friend,
+  DevsFound,
   NewPostBackground,
   NewPostModal
 } from './styles'
@@ -61,8 +62,8 @@ const Feed = ({ history }) => {
     event.preventDefault()
     await createPost(newPostContent, newPostThumbnail)
     closeNewPostModal()
-    // TODO
   }
+
   async function previewImage(e) {
     e.preventDefault()
     const previewImg = $('.preview-img')
@@ -143,8 +144,10 @@ const Feed = ({ history }) => {
     if (searchQuery.length >= 3) {
       const devs = await search(searchQuery)
       setQueriedDevs(devs)
+      document.querySelector('.searchTitle').classList.remove('hidden')
     } else {
       setQueriedDevs([])
+      document.querySelector('.searchTitle').classList.add('hidden')
     }
   }
 
@@ -159,13 +162,17 @@ const Feed = ({ history }) => {
       <Content>
         <LeftBar>
           <input placeholder="Pesquisar devs" value={searchQuery} onChange={onSearch}/>
-          <div>
+          <DevsFound>
+            <p className="searchTitle hidden">Resultado:</p>
             {
               queriedDevs.map((dev, index) => (
-                  <div key={index}>{ dev.github_username }</div>
+                  <div key={index}>
+                    <img src={dev.avatar_url} alt={`Foto de ` + dev.name}/>
+                    <span>{ dev.github_username }</span>
+                  </div>
               ))
             }
-          </div>
+          </DevsFound>
           <FaSearch color="gray" id="searchIcon"/>
           <OnlineFriends>
             <p>Amigos Online</p>
