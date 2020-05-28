@@ -42,7 +42,7 @@ const Like = styled.div`
   }
 `
 const Description = styled.div`
-  font-size: 14px;
+  font-size: 16px;
   padding: 7px;
 
   span:first-child {
