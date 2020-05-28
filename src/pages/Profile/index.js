@@ -46,7 +46,7 @@ const Profile = ({ history }) => {
         <PostsHistory>
           {
             posts.map(post => (
-              <img src={"data:image/png;base64," + post.thumbnail} alt=""/>
+              <img key={post._id} src={"data:image/png;base64," + post.thumbnail} alt=""/>
             ))
           }
         </PostsHistory>
