@@ -15,7 +15,8 @@ export const Content = styled.div`
 `
 export const LeftBar = styled.div`
   width: 250px;
-  height: 290px;
+  height: 100%;
+  padding-bottom: 20px;
   border-radius: 10px;
   background: #fff;
   position: relative;
