@@ -55,6 +55,7 @@ export const PostsHistory = styled.div`
   margin: 30px 0 auto;
   img {
     width: 230px;
+    cursor: pointer;
   }
   overflow-y: scroll;
   ::-webkit-scrollbar{

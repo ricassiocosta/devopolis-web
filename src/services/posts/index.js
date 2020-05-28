@@ -4,6 +4,10 @@ export const getPosts = async (username) => {
   const response = await api.get(`/posts/${username}`);
   return response.data
 }
+export const getPost = async (username, postId) => {
+  const response = await api.get(`/posts/${username}/${postId}`);
+  return response.data
+}
 
 export const createPost = async (content, thumbnail) => {
   const formData = new FormData()
