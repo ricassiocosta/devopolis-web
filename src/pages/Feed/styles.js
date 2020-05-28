@@ -70,8 +70,39 @@ export const OnlineFriends = styled.div`
     margin-left: 5px;
   }
 `
+
 export const Friend = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
+`
+
+export const DevsFound = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 185px;
+  margin-left: 12%;
+  .searchTitle {
+    margin-top: -15px;
+  }
+  .searchTitle.hidden {
+    display: none;
+  }
+  div {
+    width: 100%;
+    display: flex;
+    margin-left: 10px;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+    img {
+      width: 40px;
+      border-radius: 50%;
+    }
+    span {
+      font-family: 'RobotoBold';
+      margin-left: 10px;
+      font-size: 14px
+    }
+  }
 `

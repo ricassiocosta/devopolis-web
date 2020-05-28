@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import 'react-image-crop/dist/ReactCrop.css'
 
 import { getDashboard } from '../../services/dashboard'
+import { search } from '../../services/search'
 import Header from '../../components/Header'
 import Post from '../../components/Post'
 import NewPost from '../../components/NewPost'
@@ -21,6 +22,8 @@ import {
 const Feed = ({ history }) => {
   const [posts, setPosts] = useState([])
   const devInfo = useSelector(state => state.dev.devInfo)
+  const [searchQuery, setSearchQuery] = useState('')
+  const [queriedDevs, setQueriedDevs] = useState([])
 
   useEffect(() => {
     async function callApi() {
@@ -29,7 +32,20 @@ const Feed = ({ history }) => {
     }
     callApi()
   }, [])
+  
+  const onSearch = async (e) =>{
+    const searchQuery = e.target.value
+    setSearchQuery(searchQuery)
 
+    if (searchQuery.length >= 3) {
+      const devs = await search(searchQuery)
+      setQueriedDevs(devs)
+      document.querySelector('.searchTitle').classList.remove('hidden')
+    } else {
+      setQueriedDevs([])
+      document.querySelector('.searchTitle').classList.add('hidden')
+    }
+  }
   return (
     <FeedPage>
       <Header
@@ -40,7 +56,18 @@ const Feed = ({ history }) => {
       />
       <Content>
         <LeftBar>
-          <input type="text" placeholder="Pesquisar devs"/>
+          <input placeholder="Pesquisar devs" value={searchQuery} onChange={onSearch}/>
+          <DevsFound>
+            <p className="searchTitle hidden">Resultado:</p>
+            {
+              queriedDevs.map((dev, index) => (
+                  <div key={index}>
+                    <img src={dev.avatar_url} alt={`Foto de ` + dev.name}/>
+                    <span>{ dev.github_username }</span>
+                  </div>
+              ))
+            }
+          </DevsFound>
           <FaSearch color="gray" id="searchIcon"/>
           <OnlineFriends>
             <p>Amigos Online</p>
