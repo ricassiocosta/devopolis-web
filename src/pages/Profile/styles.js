@@ -51,8 +51,14 @@ export const PostsHistory = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
+  height: 60vh;
   margin: 30px 0 auto;
   img {
     width: 230px;
+    cursor: pointer;
+  }
+  overflow-y: scroll;
+  ::-webkit-scrollbar{
+    display: none
   }
 `
