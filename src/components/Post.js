@@ -6,7 +6,7 @@ import likeImg from '../assets/images/like.svg'
 
 const Background = styled.div`
   width: 460px;
-  margin: 20px auto;
+  margin: 0 auto 20px;
   background: #fbfbfb;
   border: 1px solid #d2d2d2;
   border-radius: 5px;

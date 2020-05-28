@@ -45,6 +45,7 @@ export const LeftBar = styled.div`
 export const FeedHistory = styled.div`
   width: 530px;
   height: 88vh;
+  padding: 20px;
   border-radius: 10px;
   background: #fff;
   margin-left: 26px;
