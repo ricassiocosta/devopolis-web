@@ -16,7 +16,8 @@ import {
   RightBar,
   FeedHistory,
   OnlineFriends,
-  Friend
+  Friend,
+  DevsFound
 } from './styles'
 
 const Feed = ({ history }) => {
@@ -40,12 +41,21 @@ const Feed = ({ history }) => {
     if (searchQuery.length >= 3) {
       const devs = await search(searchQuery)
       setQueriedDevs(devs)
-      document.querySelector('.searchTitle').classList.remove('hidden')
+      showSearchSelect()
     } else {
       setQueriedDevs([])
-      document.querySelector('.searchTitle').classList.add('hidden')
+      hideSearchSelect()
     }
   }
+
+  const hideSearchSelect = () => {
+    document.getElementById('devsFound').classList.add('hidden')
+  }
+
+  const showSearchSelect = () => {
+    document.getElementById('devsFound').classList.remove('hidden')
+  }
+
   return (
     <FeedPage>
       <Header
@@ -56,9 +66,8 @@ const Feed = ({ history }) => {
       />
       <Content>
         <LeftBar>
-          <input placeholder="Pesquisar devs" value={searchQuery} onChange={onSearch}/>
-          <DevsFound>
-            <p className="searchTitle hidden">Resultado:</p>
+          <input placeholder="Pesquisar devs" value={searchQuery} onChange={onSearch} onBlur={hideSearchSelect} onFocus={showSearchSelect} />
+          <DevsFound id='devsFound' className='hidden'>
             {
               queriedDevs.map((dev, index) => (
                   <div key={index}>

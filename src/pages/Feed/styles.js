@@ -82,12 +82,13 @@ export const DevsFound = styled.div`
   flex-direction: column;
   width: 185px;
   margin-left: 12%;
-  .searchTitle {
-    margin-top: -15px;
-  }
-  .searchTitle.hidden {
-    display: none;
-  }
+  position: absolute;
+  background: #fafafa;
+  max-height: 200px;
+  border-radius: 0 0 12px 12px;
+  top: 51px;
+  overflow-y: auto;
+  overflow-x: hidden;
   div {
     width: 100%;
     display: flex;
