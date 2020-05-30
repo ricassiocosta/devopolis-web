@@ -5,6 +5,10 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Arvo', serif;
   }
 
+  .hidden {
+    display: none;
+  }
+
   * {
   margin: 0;
   border: 0;
