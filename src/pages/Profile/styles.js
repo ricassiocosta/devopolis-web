@@ -24,10 +24,51 @@ export const ProfileHeader = styled.div`
   display: grid;
   grid-template-columns: 2fr 3fr;
   gap: 20px;
+  position: relative;
   img {
     width: 200px;
     border-radius: 50%;
     margin-left: 15%
+  }
+  button {
+    font-size: 16px;
+    font-family: 'RobotoBold';
+    color: #fff;
+    background-color:#008CFF;
+    width: 150px;
+    height: 40px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    cursor: pointer;
+    position: absolute;
+    right: 50px;
+    bottom: 0;
+    :hover {
+      background-color:#007bff;
+    }
+  }
+
+  button.unfollowBtn {
+    font-size: 16px;
+    font-family: 'RobotoBold';
+    color: #fff;
+    background-color: gray;
+    width: 150px;
+    height: 40px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    cursor: pointer;
+    :hover {
+      background-color: #545454;
+    }
+  }
+
+  button.hidden {
+    display: none;
   }
 `
 export const ProfileInfo = styled.div`

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import { FaHeart, FaHeartBroken } from 'react-icons/fa'
+
 import { getPosts } from '../../services/posts'
-import { getDevInfo } from '../../services/dev'
+import { getDevInfo, follow, unfollow } from '../../services/dev'
 import { useSelector } from 'react-redux'
 
 import { 
@@ -36,8 +38,40 @@ const Profile = ({ history }) => {
     callApi()
   }, [devUsername])
 
+  useEffect(() => {
+    async function verifyFollow() {
+      const list = []
+      list.push(loggedDev.followedList)
+      console.log(list)
+      if(loggedDev.github_username === devUsername) {
+        document.querySelector('.unfollowBtn').classList.add('hidden')
+        document.querySelector('.followBtn').classList.add('hidden')
+      }
+      else if(list.indexOf(devInfo._id)) {
+        document.querySelector('.unfollowBtn').classList.remove('hidden')
+      } else if(!list.indexOf(devInfo._id)) {
+        document.querySelector('.followBtn').classList.remove('hidden')
+      }
+    }
+    verifyFollow()
+  }, [devInfo._id, devUsername, loggedDev.followedList, loggedDev.github_username])
+
   function handlePost(devUsername, postId) {
     history.push(`/${devUsername}/${postId}`)
+  }
+
+  async function handleFollow() {
+    const response = await follow(devUsername)
+    console.log(response)
+    document.querySelector('.followBtn').classList.add('hidden')
+    document.querySelector('.unfollowBtn').classList.remove('hidden')
+  }
+
+  async function handleUnfollow() {
+    const response = await unfollow(devUsername)
+    console.log(response)
+    document.querySelector('.unfollowBtn').classList.add('hidden')
+    document.querySelector('.followBtn').classList.remove('hidden')
   }
 
   return(
@@ -57,6 +91,8 @@ const Profile = ({ history }) => {
             <p>"{devInfo.bio}"</p>
             <span><strong>{posts.length}</strong> Publicações | <strong>{followedList.length}</strong> Conexões</span>
           </ProfileInfo>
+          <button className="followBtn hidden" onClick={handleFollow}>Seguir <FaHeart/></button>
+          <button className="unfollowBtn hidden" onClick={handleUnfollow}>Deixar de Seguir <FaHeartBroken/></button>
         </ProfileHeader>
         <hr/>
         <PostsHistory>
