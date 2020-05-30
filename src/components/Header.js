@@ -8,6 +8,10 @@ import Home from '../assets/images/home.svg'
 import Logout from '../assets/images/logout.svg'
 import Button from './Button'
 
+import { useSelector, useDispatch } from 'react-redux'
+
+import { logout } from '../store/actions'
+
 const Background = styled.div`
   width: 100%;
   height: 65px;
@@ -116,7 +120,7 @@ const LogoutModal = styled.div`
 `
 
 const Header = ({ profilePhoto, name, username, history }) => {
-
+  const dispatch = useDispatch()
   function handleProfile(username) {
     history.push(`/${username}`)
   }
@@ -126,7 +130,7 @@ const Header = ({ profilePhoto, name, username, history }) => {
   }
 
   function handleLogout() {
-    // TO DO
+    dispatch(logout())
   }
 
   function openModal() {
