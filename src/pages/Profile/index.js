@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { getPosts } from '../../services/posts'
 import { getDevInfo } from '../../services/dev'
+import { useSelector } from 'react-redux'
 
 import { 
   ProfilePage,
@@ -14,25 +15,24 @@ import Header from '../../components/Header'
 const Profile = ({ history }) => {
   const [posts, setPosts] = useState([])
   const [devInfo, setDevInfo] = useState({})
+  const devUsername = history.location.pathname.split('/', 2)[1]
+  const loggedDev = useSelector(state => state.dev.devInfo)
 
   useEffect(() => {
     async function getDev() {
-      const response = await getDevInfo(localStorage.getItem('devUsername'))
+      const response = await getDevInfo(devUsername)
       setDevInfo(response)
-      alert('oi')
-      localStorage.removeItem('devUsername')
     }
     getDev()
-  }, [])
+  }, [devUsername])
 
   useEffect(() => {
     async function callApi() {
-      const posts = await getPosts(devInfo.github_username)
-      alert('oi')
-      setPosts(posts)
+      const response = await getPosts(devUsername)
+      setPosts(response)
     }
     callApi()
-  }, [devInfo.github_username])
+  }, [devUsername])
 
   function handlePost(postId) {
     localStorage.setItem('postId', postId)
@@ -42,9 +42,9 @@ const Profile = ({ history }) => {
   return(
     <ProfilePage>
       <Header 
-        name={devInfo.name}
-        username={devInfo.github_username}
-        profilePhoto={devInfo.avatar_url}
+        name={loggedDev.name}
+        username={loggedDev.github_username}
+        profilePhoto={loggedDev.avatar_url}
         history={history}
       />
       <Content>
@@ -54,7 +54,9 @@ const Profile = ({ history }) => {
             <span>{devInfo.name}</span>
             <span>{devInfo.github_username}</span>
             <p>"{devInfo.bio}"</p>
-            <span><strong>{posts.length}</strong> Publicações | <strong>{devInfo.followedList.length}</strong> Conexões</span>
+            {
+              //<span><strong>{posts.length}</strong> Publicações | <strong>{devInfo.followedList.length}</strong> Conexões</span>
+            }
           </ProfileInfo>
         </ProfileHeader>
         <hr/>

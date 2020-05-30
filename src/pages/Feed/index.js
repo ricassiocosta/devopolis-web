@@ -49,8 +49,7 @@ const Feed = ({ history }) => {
   }
 
   function handleDevProfile(dev) {
-    localStorage.setItem('devUsername', dev.github_username)
-    history.push('/profile')
+    history.push(`/${dev.github_username}`)
   }
 
   return (

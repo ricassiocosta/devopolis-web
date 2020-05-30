@@ -118,8 +118,7 @@ const LogoutModal = styled.div`
 const Header = ({ profilePhoto, name, username, history }) => {
 
   function handleProfile(username) {
-    localStorage.setItem('devUsername', username)
-    history.push('/profile')
+    history.push(`/${username}`)
   }
   
   function handleHome() {

@@ -14,7 +14,7 @@ const Routes = () => {
         <Route path="/" exact component={Login}/>
         <Route path="/callback" component={Callback}/>
         <Route path="/dashboard" component={Feed}/>
-        <Route path="/profile" component={Profile}/>
+        <Route path="/:username" component={Profile}/>
         <Route path="/post" component={PostDetail}/>
     />
       </Switch>
