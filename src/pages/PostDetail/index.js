@@ -46,10 +46,12 @@ const PostDetail = ({ history }) => {
         {
           post.map(post => (
             <Post
-              author={postOwner.name}
+              key={post._id}
+              author={postOwner.github_username}
               authorPhoto={postOwner.avatar_url}
               post={post.post}
               thumbnail={post.thumbnail}
+              history={history}
             />
           ))
         }
