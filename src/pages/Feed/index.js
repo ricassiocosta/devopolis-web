@@ -5,6 +5,7 @@ import 'react-image-crop/dist/ReactCrop.css'
 
 import { getDashboard } from '../../services/dashboard'
 import { search } from '../../services/search'
+
 import Header from '../../components/Header'
 import Post from '../../components/Post'
 import NewPost from '../../components/NewPost'
