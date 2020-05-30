@@ -5,6 +5,7 @@ import Login from './pages/Login/index'
 import Feed from './pages/Feed/index'
 import Callback from './pages/Callback/index'
 import Profile from './pages/Profile/index'
+import PostDetail from './pages/PostDetail/index'
 
 const Routes = () => {
   return (
@@ -14,6 +15,7 @@ const Routes = () => {
         <Route path="/callback" component={Callback}/>
         <Route path="/dashboard" component={Feed}/>
         <Route path="/profile" component={Profile}/>
+        <Route path="/post" component={PostDetail}/>
     />
       </Switch>
     </BrowserRouter>

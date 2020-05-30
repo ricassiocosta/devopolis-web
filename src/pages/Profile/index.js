@@ -23,6 +23,10 @@ const Profile = ({ history }) => {
     callApi()
   }, [devInfo.github_username])
 
+  function handlePost(postId) {
+    localStorage.setItem('postId', postId)
+    history.push('/post')
+  }
 
   return(
     <ProfilePage>
@@ -46,7 +50,7 @@ const Profile = ({ history }) => {
         <PostsHistory>
           {
             posts.map(post => (
-              <img src={"data:image/png;base64," + post.thumbnail} alt=""/>
+              <img key={post._id} src={"data:image/png;base64," + post.thumbnail} alt="" onClick={() => handlePost(post._id)}/>
             ))
           }
         </PostsHistory>

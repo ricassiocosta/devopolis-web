@@ -16,8 +16,8 @@ import {
   RightBar,
   FeedHistory,
   OnlineFriends,
-  Friend,
-  DevsFound
+  DevsFound,
+  Friend
 } from './styles'
 
 const Feed = ({ history }) => {
@@ -106,7 +106,7 @@ const Feed = ({ history }) => {
                   post={post.post}
                   thumbnail={post.thumbnail}
                 />
-              ))
+              )).reverse()
             }
           </FeedHistory>
         </RightBar>
