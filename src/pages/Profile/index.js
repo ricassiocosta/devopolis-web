@@ -34,9 +34,8 @@ const Profile = ({ history }) => {
     callApi()
   }, [devUsername])
 
-  function handlePost(postId) {
-    localStorage.setItem('postId', postId)
-    history.push('/post')
+  function handlePost(devUsername, postId) {
+    history.push(`/${devUsername}/${postId}`)
   }
 
   return(
@@ -63,7 +62,7 @@ const Profile = ({ history }) => {
         <PostsHistory>
           {
             posts.map(post => (
-              <img key={post._id} src={"data:image/png;base64," + post.thumbnail} alt="" onClick={() => handlePost(post._id)}/>
+              <img key={post._id} src={"data:image/png;base64," + post.thumbnail} alt="" onClick={() => handlePost(devUsername ,post._id)}/>
             ))
           }
         </PostsHistory>

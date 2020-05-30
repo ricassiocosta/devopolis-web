@@ -102,6 +102,7 @@ const Feed = ({ history }) => {
                   authorPhoto={post.authorPhoto}
                   post={post.post}
                   thumbnail={post.thumbnail}
+                  history={history}
                 />
               )).reverse()
             }
