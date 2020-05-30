@@ -8,7 +8,7 @@ import Home from '../assets/images/home.svg'
 import Logout from '../assets/images/logout.svg'
 import Button from './Button'
 
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import { logout } from '../store/actions'
 
@@ -126,7 +126,7 @@ const Header = ({ profilePhoto, name, username, history }) => {
   }
   
   function handleHome() {
-    history.push('/dashboard')
+    history.push('/')
   }
 
   function handleLogout() {

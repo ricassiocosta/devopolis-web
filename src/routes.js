@@ -31,9 +31,9 @@ const Routes = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/login" exact component={Login}/>
+        <Route path="/login" component={Login}/>
         <Route path="/callback" component={Callback}/>
-        <AuthenticatedRoute path="/" component={Feed} />
+        <AuthenticatedRoute path="/" exact component={Feed} />
         <AuthenticatedRoute path="/:username" exact component={Profile}/>
         <AuthenticatedRoute path="/:username/:postId" component={PostDetail}/>
       />

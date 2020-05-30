@@ -65,6 +65,7 @@ const Profile = ({ history }) => {
 
   async function handleFollow() {
     const response = await follow(devUsername)
+    console.log(response)
     dispatch(setDevInfo(response))
     document.querySelector('.followBtn').classList.add('hidden')
     document.querySelector('.unfollowBtn').classList.remove('hidden')
@@ -72,6 +73,7 @@ const Profile = ({ history }) => {
 
   async function handleUnfollow() {
     const response = await unfollow(devUsername)
+    console.log(response)
     dispatch(setDevInfo(response))
     document.querySelector('.unfollowBtn').classList.add('hidden')
     document.querySelector('.followBtn').classList.remove('hidden')

@@ -71,7 +71,7 @@ const Feed = ({ history }) => {
       />
       <Content>
         <LeftBar>
-          <input placeholder="Pesquisar devs" value={searchQuery} onChange={onSearch} onBlur={hideSearchSelect} onFocus={showSearchSelect} />
+          <input placeholder="Pesquisar devs" value={searchQuery} onChange={onSearch} /*onBlur={hideSearchSelect}*/ onFocus={showSearchSelect} />
           <DevsFound id='devsFound' className='hidden'>
             {
               queriedDevs.map((dev, index) => (
