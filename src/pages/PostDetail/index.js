@@ -28,7 +28,6 @@ const PostDetail = ({ history }) => {
   useEffect(() => {
     async function callApi() {
       const response = await getPost(devUsername, postId)
-      console.log(response)
       setPost(response)
     }
     callApi()

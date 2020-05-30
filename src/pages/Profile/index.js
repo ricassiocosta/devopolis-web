@@ -17,6 +17,8 @@ const Profile = ({ history }) => {
   const [devInfo, setDevInfo] = useState({})
   const devUsername = history.location.pathname.split('/', 2)[1]
   const loggedDev = useSelector(state => state.dev.devInfo)
+  let followedList = []
+  followedList.push(devInfo.followedList)
 
   useEffect(() => {
     async function getDev() {
@@ -53,9 +55,7 @@ const Profile = ({ history }) => {
             <span>{devInfo.name}</span>
             <span>{devInfo.github_username}</span>
             <p>"{devInfo.bio}"</p>
-            {
-              //<span><strong>{posts.length}</strong> Publicações | <strong>{devInfo.followedList.length}</strong> Conexões</span>
-            }
+            <span><strong>{posts.length}</strong> Publicações | <strong>{followedList.length}</strong> Conexões</span>
           </ProfileInfo>
         </ProfileHeader>
         <hr/>
