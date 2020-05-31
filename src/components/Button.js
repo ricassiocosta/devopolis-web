@@ -16,9 +16,9 @@ const ButtonText = styled.span `
   font-family: 'RobotoBold';
 `
 
-const Button = ({text, textColor, backgroundColor}) => {
+const Button = ({ text, textColor, backgroundColor, ...rest }) => {
   return(
-    <DynamicButton backgroundColor={backgroundColor}>
+    <DynamicButton backgroundColor={backgroundColor} {...rest}>
       <ButtonText textColor={textColor}>
         {text}
       </ButtonText>

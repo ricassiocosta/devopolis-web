@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { getPosts } from '../../services/posts'
+import { FaHeart, FaHeartBroken } from 'react-icons/fa'
 
-import { useSelector } from 'react-redux'
+import { getPosts } from '../../services/posts'
+import { getDevInfo, follow, unfollow } from '../../services/dev'
+import { useSelector, useDispatch } from 'react-redux'
+
+import { setDevInfo } from '../../store/actions/dev'
+
 import { 
   ProfilePage,
   ProfileHeader,
@@ -11,21 +16,67 @@ import {
 } from './styles.js'
 import Header from '../../components/Header'
 
+
 const Profile = ({ history }) => {
+  const dispatch = useDispatch()
   const [posts, setPosts] = useState([])
+  const [profileInfo, setProfileInfo] = useState({})
+  const [profileConnections, setProfileConnections] = useState(0)
+  const devUsername = history.location.pathname.split('/', 2)[1]
   const devInfo = useSelector(state => state.dev.devInfo)
 
   useEffect(() => {
+    async function getDev() {
+      const response = await getDevInfo(devUsername)
+      setProfileInfo(response)
+      setProfileConnections(response.followedList.length)
+    }
+    getDev()
+  }, [devUsername])
+
+  useEffect(() => {
     async function callApi() {
-      const posts = await getPosts(devInfo.github_username)
-      setPosts(posts)
+      const response = await getPosts(devUsername)
+      setPosts(response)
     }
     callApi()
-  }, [devInfo.github_username])
+  }, [devUsername])
 
-  function handlePost(postId) {
-    localStorage.setItem('postId', postId)
-    history.push('/post')
+  useEffect(() => {
+    function verifyFollow() {
+      if(devInfo.github_username === devUsername) {
+        document.querySelector('.unfollowBtn').classList.add('hidden')
+        document.querySelector('.followBtn').classList.add('hidden')
+        return
+      }
+
+      if(devInfo.followedList.includes(profileInfo._id)) {
+        document.querySelector('.unfollowBtn').classList.remove('hidden')
+      } else {
+        document.querySelector('.followBtn').classList.remove('hidden')
+      }
+    }
+    verifyFollow()
+  }, [profileInfo._id, devUsername, devInfo.followedList, devInfo.github_username, devInfo, profileInfo])
+
+  function handlePost(devUsername, postId) {
+    history.push(`/${devUsername}/${postId}`)
+  }
+
+  async function handleFollow() {
+    const response = await follow(devUsername)
+    console.log(response)
+    dispatch(setDevInfo(response))
+    document.querySelector('.followBtn').classList.add('hidden')
+    document.querySelector('.unfollowBtn').classList.remove('hidden')
+  }
+
+  async function handleUnfollow() {
+    const response = await unfollow(devUsername)
+    console.log(response)
+    dispatch(setDevInfo(response))
+    document.querySelector('.unfollowBtn').classList.add('hidden')
+    document.querySelector('.followBtn').classList.remove('hidden')
   }
 
   return(
@@ -38,20 +89,22 @@ const Profile = ({ history }) => {
       />
       <Content>
         <ProfileHeader>
-          <img src={devInfo.avatar_url} alt=""/>
+          <img src={profileInfo.avatar_url} alt=""/>
           <ProfileInfo>
-            <span>{devInfo.name}</span>
-            <span>{devInfo.github_username}</span>
-            <p>"{devInfo.bio}"</p>
-            <span><strong>{posts.length}</strong> Publicações | <strong>{devInfo.followedList.length}</strong> Conexões</span>
+            <span>{profileInfo.name}</span>
+            <span>{profileInfo.github_username}</span>
+            <p>"{profileInfo.bio}"</p>
+            <span><strong>{posts.length}</strong> Publicações | <strong>{profileConnections}</strong> Conexões</span>
           </ProfileInfo>
+          <button className="followBtn hidden" onClick={handleFollow}>Seguir <FaHeart/></button>
+          <button className="unfollowBtn hidden" onClick={handleUnfollow}>Deixar de Seguir <FaHeartBroken/></button>
         </ProfileHeader>
         <hr/>
         <PostsHistory>
           {
             posts.map(post => (
-              <img key={post._id} src={"data:image/png;base64," + post.thumbnail} alt="" onClick={() => handlePost(post._id)}/>
-            ))
+              <img key={post._id} src={"data:image/png;base64," + post.thumbnail} alt="" onClick={() => handlePost(devUsername ,post._id)}/>
+            )).reverse()
           }
         </PostsHistory>
       </Content>

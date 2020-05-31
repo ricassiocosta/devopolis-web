@@ -19,9 +19,11 @@ const PostTitle = styled.div`
     width: 24px;
     margin: 5px;
     border-radius: 50%;
+    cursor: pointer;
   }
   span {
-    font-family: 'RobotoBold'
+    font-family: 'RobotoBold';
+    cursor: pointer;
   }
 `
 
@@ -51,12 +53,17 @@ const Description = styled.div`
   }
 `
 
-const Post = ({ authorPhoto, author, post, thumbnail }) => {
+const Post = ({ authorPhoto, author, post, thumbnail, history }) => {
+
+  function handleProfile() {
+    history.push(`/${author}`)
+  }
+
   return(
     <Background>
       <PostTitle>
-        <img src={authorPhoto} alt="devprofile"/>
-        <span>{author}</span>
+        <img src={authorPhoto} alt="devprofile" onClick={handleProfile}/>
+        <span onClick={handleProfile}>{author}</span>
       </PostTitle>
       <Img src={"data:image/png;base64," + thumbnail} />
       <Like>

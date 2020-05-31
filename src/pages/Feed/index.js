@@ -5,6 +5,7 @@ import 'react-image-crop/dist/ReactCrop.css'
 
 import { getDashboard } from '../../services/dashboard'
 import { search } from '../../services/search'
+
 import Header from '../../components/Header'
 import Post from '../../components/Post'
 import NewPost from '../../components/NewPost'
@@ -48,6 +49,10 @@ const Feed = ({ history }) => {
     }
   }
 
+  function handleDevProfile(dev) {
+    history.push(`/${dev.github_username}`)
+  }
+
   const hideSearchSelect = () => {
     document.getElementById('devsFound').classList.add('hidden')
   }
@@ -66,11 +71,11 @@ const Feed = ({ history }) => {
       />
       <Content>
         <LeftBar>
-          <input placeholder="Pesquisar devs" value={searchQuery} onChange={onSearch} onBlur={hideSearchSelect} onFocus={showSearchSelect} />
+          <input placeholder="Pesquisar devs" value={searchQuery} onChange={onSearch} /*onBlur={hideSearchSelect}*/ onFocus={showSearchSelect} />
           <DevsFound id='devsFound' className='hidden'>
             {
               queriedDevs.map((dev, index) => (
-                  <div key={index}>
+                  <div key={index} onClick={() => handleDevProfile(dev)}>
                     <img src={dev.avatar_url} alt={`Foto de ` + dev.name}/>
                     <span>{ dev.github_username }</span>
                   </div>
@@ -105,6 +110,7 @@ const Feed = ({ history }) => {
                   authorPhoto={post.authorPhoto}
                   post={post.post}
                   thumbnail={post.thumbnail}
+                  history={history}
                 />
               )).reverse()
             }

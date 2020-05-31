@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
 import { getPost } from '../../services/posts'
-import { getDevInfoById } from '../../services/dev'
+import { getDevInfo } from '../../services/dev'
 import { 
   PostPage,
   Content
@@ -13,38 +13,48 @@ import Post from '../../components/Post'
 const PostDetail = ({ history }) => {
   const [post, setPost] = useState([])
   const [postOwner, setPostOwner] = useState([])
-  const devInfo = useSelector(state => state.dev.devInfo)
-  const postId = localStorage.getItem('postId')
-  localStorage.removeItem('postId')
+  const loggedDev = useSelector(state => state.dev.devInfo)
+  const devUsername = history.location.pathname.split('/', 2)[1]
+  const postId = history.location.pathname.split('/', 3)[2]
   
   useEffect(() => {
     async function callApi() {
-      const requestedPost = await getPost(devInfo.github_username, postId)
-      const response = await getDevInfoById(requestedPost.author)
-      setPost(requestedPost)
+      const response = await getDevInfo(devUsername)
       setPostOwner(response)
     }
     callApi()
-  })
+  }, [devUsername])
+
+  useEffect(() => {
+    async function callApi() {
+      const response = await getPost(devUsername, postId)
+      setPost(response)
+    }
+    callApi()
+  },[devUsername, postId])
 
   return(
     <PostPage>
       <Header 
-        name={devInfo.name}
-        username={devInfo.github_username}
-        profilePhoto={devInfo.avatar_url}
+        name={loggedDev.name}
+        username={loggedDev.github_username}
+        profilePhoto={loggedDev.avatar_url}
         history={history}
       />
       <Content> 
-        {post.map(post => (
-          <Post
-            key={post._id}
-            author={postOwner.name}
-            authorPhoto={postOwner.avatar_url}
-            post={post.post}
-            thumbnail={post.thumbnail}
-          />
-        ))}
+        {
+          post.map(post => (
+            <Post
+              key={post._id}
+              author={postOwner.github_username}
+              authorPhoto={postOwner.avatar_url}
+              post={post.post}
+              thumbnail={post.thumbnail}
+              history={history}
+            />
+          ))
+        }
+        
       </Content>
     </PostPage>
   )
