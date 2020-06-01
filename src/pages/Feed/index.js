@@ -30,10 +30,13 @@ const Feed = ({ history }) => {
   useEffect(() => {
     async function callApi() {
       const posts = await getDashboard()
+      if(posts.error === 'login expired') {
+        history.push('/login')
+      }
       setPosts(posts)
     }
     callApi()
-  }, [])
+  }, [history])
   
   const onSearch = async (e) =>{
     const searchQuery = e.target.value
