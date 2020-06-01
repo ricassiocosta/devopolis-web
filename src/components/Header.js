@@ -31,6 +31,7 @@ const LogoImg = styled.img`
   display: flex;
   margin-right: 110px;
   align-self: center;
+  cursor: pointer;
 `
 
 const HeaderTop = styled.div`
@@ -144,7 +145,7 @@ const Header = ({ profilePhoto, name, username, history }) => {
   return (
     <Background>
       <HeaderContent>
-        <LogoImg src={Logo} alt="Logo"/>
+        <LogoImg src={Logo} alt="Logo" onClick={handleHome}/>
         <HeaderTop>
           <DevInfo onClick={() => handleProfile(username)}>
             <img src={profilePhoto} alt="dev"/>
