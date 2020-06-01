@@ -165,7 +165,7 @@ const Header = ({ profilePhoto, name, username, history }) => {
           <FaTimes id="closeModal" onClick={closeModal}/>
           <span>Deseja sair da sua conta?</span>
           <hr/>
-          <Button text="Sim, fazer logout" textColor="white" backgroundColor ="gray" onClick={handleLogout}/>
+          <Button text="Sim, fazer logout" textColor="white" backgroundColor ="#008CFF" onClick={handleLogout}/>
         </LogoutModal>
       </LogoutBackground>
     </Background>

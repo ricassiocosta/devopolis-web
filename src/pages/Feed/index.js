@@ -139,7 +139,7 @@ const Feed = ({ history }) => {
                   : "Você ainda não segue ninguém. Procure algum dev na barra de pesquisa!")
               : (
                 <LoadingWrapper>
-                  <SolarSystemLoading color='#008cff' className='loading' />
+                  <SolarSystemLoading color='#008CFF' className='loading' />
                 </LoadingWrapper>
               )
             }

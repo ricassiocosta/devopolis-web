@@ -111,7 +111,7 @@ const Profile = ({ history }) => {
             ? (posts.map(post => (
               <img key={post._id} src={"data:image/png;base64," + post.thumbnail} alt="" onClick={() => handlePost(devUsername ,post._id)}/>
             )).reverse())
-            : <SolarSystemLoading color='#008cff' />
+            : <SolarSystemLoading color='#008CFF' />
           }
         </PostsHistory>
       </Content>
