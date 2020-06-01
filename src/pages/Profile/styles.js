@@ -8,6 +8,7 @@ export const ProfilePage = styled.div`
 `
 export const Content = styled.div`
   width: 800px;
+  height: 89%;
   background-color: white;
   display: flex;
   flex-direction: column;
