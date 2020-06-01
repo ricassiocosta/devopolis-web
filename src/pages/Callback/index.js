@@ -24,7 +24,7 @@ const Callback = () => {
       const devInfo = await getDevInfo(username)
       dispatch(setDevInfo(devInfo))
 
-      history.replace('/dashboard')
+      history.replace('/')
     }
     callApi()
   });
