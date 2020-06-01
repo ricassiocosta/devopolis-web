@@ -59,7 +59,7 @@ const Feed = ({ history }) => {
       }
     }
     callApi()
-  }, [])
+  }, [dispatch])
   
   const onSearch = async (e) =>{
     const searchQuery = e.target.value

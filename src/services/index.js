@@ -14,8 +14,6 @@ api.interceptors.request.use(async config => {
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
-}, error => {
-  console.log({ error })
 });
 
 export default api;
