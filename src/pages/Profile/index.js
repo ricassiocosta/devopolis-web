@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { FaHeart, FaHeartBroken } from 'react-icons/fa'
+import { useSelector, useDispatch } from 'react-redux'
+import { SolarSystemLoading } from 'react-loadingg';
 
 import { getPosts } from '../../services/posts'
 import { getDevInfo, follow, unfollow } from '../../services/dev'
-import { useSelector, useDispatch } from 'react-redux'
 
 import { setDevInfo } from '../../store/actions/dev'
 
@@ -22,6 +23,7 @@ const Profile = ({ history }) => {
   const [posts, setPosts] = useState([])
   const [profileInfo, setProfileInfo] = useState({})
   const [profileConnections, setProfileConnections] = useState(0)
+  const [isLoading, setIsLoading] = useState(false)
   const devUsername = history.location.pathname.split('/', 2)[1]
   const devInfo = useSelector(state => state.dev.devInfo)
 
@@ -36,8 +38,10 @@ const Profile = ({ history }) => {
 
   useEffect(() => {
     async function callApi() {
+      setIsLoading(true)
       const response = await getPosts(devUsername)
       setPosts(response)
+      setIsLoading(false)
     }
     callApi()
   }, [devUsername])
@@ -65,7 +69,6 @@ const Profile = ({ history }) => {
 
   async function handleFollow() {
     const response = await follow(devUsername)
-    console.log(response)
     dispatch(setDevInfo(response))
     document.querySelector('.followBtn').classList.add('hidden')
     document.querySelector('.unfollowBtn').classList.remove('hidden')
@@ -73,7 +76,6 @@ const Profile = ({ history }) => {
 
   async function handleUnfollow() {
     const response = await unfollow(devUsername)
-    console.log(response)
     dispatch(setDevInfo(response))
     document.querySelector('.unfollowBtn').classList.add('hidden')
     document.querySelector('.followBtn').classList.remove('hidden')
@@ -102,9 +104,11 @@ const Profile = ({ history }) => {
         <hr/>
         <PostsHistory>
           {
-            posts.map(post => (
+            !isLoading
+            ? (posts.map(post => (
               <img key={post._id} src={"data:image/png;base64," + post.thumbnail} alt="" onClick={() => handlePost(devUsername ,post._id)}/>
-            )).reverse()
+            )).reverse())
+            : <SolarSystemLoading color='#008CFF' />
           }
         </PostsHistory>
       </Content>

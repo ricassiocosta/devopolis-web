@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { FaSearch } from 'react-icons/fa'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { SolarSystemLoading } from 'react-loadingg';
 import 'react-image-crop/dist/ReactCrop.css'
 
 import { getDashboard } from '../../services/dashboard'
@@ -10,6 +11,8 @@ import Header from '../../components/Header'
 import Post from '../../components/Post'
 import NewPost from '../../components/NewPost'
 
+import { logout } from '../../store/actions'
+
 import { 
   FeedPage,
   Content,
@@ -18,31 +21,58 @@ import {
   FeedHistory,
   OnlineFriends,
   DevsFound,
-  Friend
+  Friend,
+  LoadingWrapper
 } from './styles'
 
+const Posts = ({ posts, history }) => {
+  return posts.map(post => (
+    <Post
+      key={post._id}
+      author={post.author}
+      authorPhoto={post.authorPhoto}
+      post={post.post}
+      thumbnail={post.thumbnail}
+      history={history}
+    />
+  )).reverse()
+}
+
 const Feed = ({ history }) => {
+  const dispatch = useDispatch()
   const [posts, setPosts] = useState([])
   const devInfo = useSelector(state => state.dev.devInfo)
   const [searchQuery, setSearchQuery] = useState('')
   const [queriedDevs, setQueriedDevs] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     async function callApi() {
-      const posts = await getDashboard()
-      setPosts(posts)
+      try {
+        setIsLoading(true)
+        const posts = await getDashboard()
+        setPosts(posts)
+      } catch (err) {
+        dispatch(logout())
+      } finally {
+        setIsLoading(false)
+      }
     }
     callApi()
-  }, [])
+  }, [dispatch])
   
   const onSearch = async (e) =>{
     const searchQuery = e.target.value
     setSearchQuery(searchQuery)
 
     if (searchQuery.length >= 3) {
-      const devs = await search(searchQuery)
-      setQueriedDevs(devs)
-      showSearchSelect()
+      try {
+        const devs = await search(searchQuery)
+        setQueriedDevs(devs)
+        showSearchSelect()
+      } catch (err) {
+        dispatch(logout())
+      }
     } else {
       setQueriedDevs([])
       hideSearchSelect()
@@ -103,16 +133,15 @@ const Feed = ({ history }) => {
           <NewPost />
           <FeedHistory>
             {
-              posts.map(post => (
-                <Post
-                  key={post._id}
-                  author={post.author}
-                  authorPhoto={post.authorPhoto}
-                  post={post.post}
-                  thumbnail={post.thumbnail}
-                  history={history}
-                />
-              )).reverse()
+              !isLoading
+              ? (posts.length
+                  ? <Posts posts={posts} history={history} />
+                  : "Você ainda não segue ninguém. Procure algum dev na barra de pesquisa!")
+              : (
+                <LoadingWrapper>
+                  <SolarSystemLoading color='#008CFF' className='loading' />
+                </LoadingWrapper>
+              )
             }
           </FeedHistory>
         </RightBar>

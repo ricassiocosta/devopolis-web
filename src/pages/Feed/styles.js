@@ -109,3 +109,15 @@ export const DevsFound = styled.div`
     }
   }
 `
+
+export const LoadingWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  > div {
+    margin: 0 !important;
+    position: relative !important;
+  }
+`
